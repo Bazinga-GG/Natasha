@@ -1,9 +1,10 @@
 <template>
-  <div class="uploadWrapper">
+  <div class="uploadWrapper" v-bind:class="[status, size]">
     <input class="uploadFile" type="file" v-on:change="onSelectFileBtnClick">
     <input class="uploadFileName" readonly="readonly" disabled type="text"
            :placeholder="placeHolder" :value="fileName">
     <span class="uploadFileSelectBtn">...</span>
+    <div class="errorTip icon-notification">{{ errMsg }}</div>
   </div>
 </template>
 
@@ -20,7 +21,22 @@
         type: String,
         default: "",
         required: false,
-      }
+      },
+      status: {
+        type: String,
+        default: "",
+        required: false,
+      },
+      errMsg: {
+        type: String,
+        default: "",
+        required: false,
+      },
+      size: {
+        type: String,
+        default: "",
+        required: false,
+      },
     },
     data: function () {
       return {
@@ -125,6 +141,53 @@
     line-height: 18px;
     text-align: center;
     color: #777;
+  }
+
+  .uploadWrapper .errorTip {
+    color: #ff4c4c;
+    line-height: 18px;
+    font-size: 14px;
+    position: absolute;
+    bottom: -20px;
+    display: none;
+  }
+
+  .uploadWrapper .errorTip:before {
+    margin-right: 10px;
+  }
+
+  .error {
+    border: 1px solid #ff4c4c !important;
+  }
+
+  .error .errorTip {
+    display: block;
+  }
+
+  .disable {
+    background-color: #f0f0f0;
+    pointer-events: none;
+  }
+
+  .mini {
+    height: 22px;
+  }
+
+  .mini .uploadFile {
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+  }
+
+  .mini .uploadFileName {
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+  }
+
+  .mini .uploadFileSelectBtn {
+    height: 20px;
+    line-height: 10px;
   }
 
   /*region dark theme*/

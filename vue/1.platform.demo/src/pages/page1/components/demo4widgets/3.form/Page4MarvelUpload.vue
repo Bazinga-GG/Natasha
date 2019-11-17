@@ -17,7 +17,7 @@
             <div style="width:200px;">
               <button v-on:click="onTestBtnClick">Test</button>
               <button v-on:click="onClearBtnClick">Clear</button>
-              <marvel-upload ref="ref0" placeHolder="请选择文件"></marvel-upload>
+              <marvel-upload ref="ref0" placeHolder="请选择文件" status="error" errMsg="can not be empty!"></marvel-upload>
             </div>
             <!--2级DemoView end-->
           </div>
