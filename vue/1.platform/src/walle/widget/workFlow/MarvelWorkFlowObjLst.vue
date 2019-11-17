@@ -3,39 +3,39 @@
     <div class="topArea">
       <div class="title4objListPageWrapper">{{title}}</div>
       <div class="btnAreaWrapper">
-        <marvel-button :ref="'objLstPageCreateBtn1' + componentId" label="创建" classCustom="classCustom4Btn4WorkflowObjLst"
-                       v-on:onClick="callback4OnClickToCreate"></marvel-button>
-        <marvel-button :ref="'objLstPageCreateBtn2' + componentId" label="批量创建" classCustom="classCustom4Btn4WorkflowObjLst"
-                       v-on:onClick="callback4OnClickToBatchCreate"></marvel-button>
-        <marvel-button :ref="'objLstPageCreateBtn3' + componentId" label="批量删除" classCustom="classCustom4Btn4WorkflowObjLst"
-                       v-on:onClick="callback4OnClickToBatchDelete"></marvel-button>
         <slot name="btnArea"></slot>
+        <marvel-button v-show="defaultOperationBtnVisible.batchDelete" :ref="'objLstPageCreateBtn3' + componentId" label="批量删除" classCustom="classCustom4Btn"
+                       v-on:onClick="callback4OnClickToBatchDelete"></marvel-button>
+        <marvel-button v-show="defaultOperationBtnVisible.batchCreate" :ref="'objLstPageCreateBtn2' + componentId" label="批量创建" classCustom="classCustom4Btn"
+                       v-on:onClick="callback4OnClickToBatchCreate"></marvel-button>
+        <marvel-button v-show="defaultOperationBtnVisible.create" :ref="'objLstPageCreateBtn1' + componentId" label="创建" classCustom="classCustom4Btn"
+                       v-on:onClick="callback4OnClickToCreate"></marvel-button>
       </div>
-      <div class="searchArea4objList">
+      <div class="searchArea4objList" v-if="hasSearch">
         <marvel-search-box @search="callback4OnSearch" width="120px" maxHeight="260px"
-                                      :selectItems="searchSelectItems"></marvel-search-box>
+                           :selectItems="searchSelectItems"></marvel-search-box>
       </div>
     </div>
     <div class="bottomArea">
       <marvel-table :ref="'objLstGrid' + componentId"
-                      :gridId="'objLstGrid' + componentId"
-                      :titles="title4objLstInner"
-                      :rows="row4objLstInner"
-                      :limit="limit"
-                      :showChangeLimit="showChangeLimit"
-                      :limitRange="limitRange"
-                      :dynamicPaging="true"
-                      :totalNum="totalNum"
-                      :totalPage="totalPage"
-                      :canDrag="true"
-                      :hasFoot="true"
-                      :minRowH="true"
-                      :sortRowsFunc="_sortRowsFunc"
-                      v-on:onTitleCheckOrUncheck="_onTitleCheckOrUncheck"
-                      v-on:onRowCheckOrUnCheck="_onRowCheckOrUnCheck"
-                      v-on:onIconClick="_onIconClick"
-                      v-on:onPerPageNumChange="callback4OnPerPageNumChange"
-                      v-on:onPageChange="callback4OnPageChange"></marvel-table>
+                    :gridId="'objLstGrid' + componentId"
+                    :titles="title4objLstInner"
+                    :rows="row4objLstInner"
+                    :limit="limit"
+                    :showChangeLimit="showChangeLimit"
+                    :limitRange="limitRange"
+                    :dynamicPaging="true"
+                    :totalNum="totalNum"
+                    :totalPage="totalPage"
+                    :canDrag="true"
+                    :hasFoot="true"
+                    :minRowH="true"
+                    :sortRowsFunc="_sortRowsFunc"
+                    v-on:onTitleCheckOrUncheck="_onTitleCheckOrUncheck"
+                    v-on:onRowCheckOrUnCheck="_onRowCheckOrUnCheck"
+                    v-on:onIconClick="_onIconClick"
+                    v-on:onPerPageNumChange="callback4OnPerPageNumChange"
+                    v-on:onPageChange="callback4OnPageChange"></marvel-table>
     </div>
   </div>
 </template>
@@ -104,6 +104,22 @@
         default: function () {
           return [26, 50, 100, 200]
         },
+        required: false,
+      },
+      defaultOperationBtnVisible: {
+        type: Object,
+        default: function () {
+          return {
+            create:true,
+            batchCreate:true,
+            batchDelete:true,
+          }
+        },
+        required: false,
+      },
+      hasSearch: {
+        type: Boolean,
+        default: true,
         required: false,
       }
     },
@@ -453,8 +469,8 @@
     margin-left: 20px;
   }
 
-  .classCustom4Btn4WorkflowObjLst {
-    float: left;
+  .classCustom4Btn {
+    float: right;
     margin-right: 20px;
   }
 

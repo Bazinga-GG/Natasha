@@ -1,7 +1,7 @@
 <template>
   <div class="inputWrapper" v-bind:class="[status, size]">
     <div class="placeHolder" v-show="inputMsg === '' || inputMsg == undefined">{{placeHolder}}</div>
-    <input class="inputDefault" :type="inputType"
+    <input class="inputDefault" :type="inputType" :autocomplete="(inputType=='password'&&!autocompletePassword)?'off':'on'"
            :title="placeHolder"
            :disabled="bDisabled"
            v-model.trim="inputMsg"
@@ -46,6 +46,11 @@
       size: {
         type: String,
         default: "",
+        required: false,
+      },
+      autocompletePassword: {
+        type: Boolean,
+        default: false,
         required: false,
       },
     },

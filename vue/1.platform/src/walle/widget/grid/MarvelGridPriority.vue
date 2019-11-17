@@ -64,12 +64,10 @@
       //#region inner
 
       onClickItem: function (oItem, index) {
-        if(this.hasJudgeBeforeItemClick){
-          this.callback4OnClickItem(oItem, index);
-        }else{
+        if(!this.hasJudgeBeforeItemClick){
           this.currentSelectItemIndex = index;
-          this.callback4OnClickItem(oItem, index);
         }
+        this.callback4OnClickItem(oItem, index);
       },
       onClickToFirst: function () {
         for (; ;) {

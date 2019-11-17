@@ -4,6 +4,12 @@
   "description": "natasha-icon widget",
   "author": "author",
   "private": false,
+  "files": [
+    "style.css",
+    "fonts"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
   "engines": {
     "node": ">= 6.0.0",
     "npm": ">= 3.0.0"
