@@ -2,15 +2,18 @@
   <div class="marvelGridPriorityWrapper">
     <div class="priorityLeftPart">
       <div class="priorityTitle">
-        <div class="priorityItemIndex">{{col1Title}}</div>
-        <div class="priorityItemName">{{col2Title}}</div>
+        <div class="priorityItemIndex" style="width: 240px;">{{col1Title}}</div>
+        <div class="priorityItemName" :style="itemNameWidth">{{col2Title}}</div>
+        <div v-for="title in customTitles" :style="{width:title.width + 'px'}" class="priorityItemCustom">{{title.name}}</div>
       </div>
       <div class="priorityItem"
            v-for="(item, index) in list"
            v-on:click="onClickItem(item, index)"
            v-bind:class="{isSelected:currentSelectItemIndex == index}">
-        <div class="priorityItemIndex">{{index + 1}}</div>
-        <div class="priorityItemName">{{item.name}}</div>
+        <div class="priorityItemIndex" style="width: 240px;">{{index + 1}}</div>
+        <div class="priorityItemName" :style="itemNameWidth">{{item.name}}</div>
+        <div class="priorityItemCustom" v-for="customItem in item.customItems"
+             :style="{width:_getCustomWByKey(customItem.key)}" :class="customItem.icon">{{customItem.value}}</div>
       </div>
     </div>
     <div class="priorityRightPart">
@@ -54,20 +57,41 @@
         default: false,
         required: false,
       },
+      customTitles: {
+        type: Array,
+        default: function () {
+          return []
+        },
+        required: false,
+      },
     },
     data: function () {
       return {
         currentSelectItemIndex: 0
       }
     },
+    computed:{
+      itemNameWidth: function () {
+        var iIndexW = 240;
+        var iBorderW = 2;
+        var iCustomTitleW = 0;
+        for(var i = 0; i<this.customTitles.length; i++){
+          iCustomTitleW = iCustomTitleW + parseInt(this.customTitles[i].width) + 1;
+        }
+
+        return {width: 'calc(100% - ' + (iIndexW + iBorderW + iCustomTitleW )+ 'px)'}
+      },
+    },
     methods: {
       //#region inner
 
       onClickItem: function (oItem, index) {
-        if(!this.hasJudgeBeforeItemClick){
+        if(this.hasJudgeBeforeItemClick){
+          this.callback4OnClickItem(oItem, index);
+        }else{
           this.currentSelectItemIndex = index;
+          this.callback4OnClickItem(oItem, index);
         }
-        this.callback4OnClickItem(oItem, index);
       },
       onClickToFirst: function () {
         for (; ;) {
@@ -112,6 +136,14 @@
             this.onClickDown();
           } else {
             break;
+          }
+        }
+      },
+
+      _getCustomWByKey: function(strKey){
+        for(var i = 0; i<this.customTitles.length; i++){
+          if(this.customTitles[i].key == strKey){
+            return this.customTitles[i].width + 'px';
           }
         }
       },
@@ -199,7 +231,6 @@
   }
 
   .priorityItemIndex {
-    width: 240px;
     height: 100%;
     float: left;
     border-right: 1px dashed #d5d5d5;
@@ -213,10 +244,24 @@
   }
 
   .priorityItemName {
-    width: calc(100% - 242px);
     height: 100%;
     float: left;
     padding: 0 10px;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 32px;
+    font-size: 14px;
+    color: #666666;
+    text-align: center;
+  }
+
+  .priorityItemCustom {
+    height: 100%;
+    float: left;
+    padding: 0 10px;
+    border-left: 1px dashed #d5d5d5;
     box-sizing: border-box;
     text-overflow: ellipsis;
     overflow: hidden;

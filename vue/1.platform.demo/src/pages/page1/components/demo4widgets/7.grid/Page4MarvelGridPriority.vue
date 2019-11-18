@@ -16,7 +16,7 @@
             <!--2级DemoView start-->
             <div style="height:300px;">
               <button @click="getPriorityList">getPriorityList</button>
-              <marvel-grid-priority :list="list4Priority" col1Title="col1Title" col2Title="col2Title"
+              <marvel-grid-priority :list="list4Priority" col1Title="col1Title" col2Title="col2Title" :customTitles="customTitles"
               ></marvel-grid-priority>
             </div>
             <!--2级DemoView end-->
@@ -73,41 +73,114 @@
         }],
         //#endregion
         //#region custom data
+        customTitles:[{
+          key:"custom1",
+          name:"custom1",
+          width: 100
+        },{
+          key:"custom2",
+          name:"custom2",
+          width: 100
+        }],
         list4Priority: [
           {
             name: "aaa",
             id: "aaa",
-            priority: 1
+            priority: 1,
+            customItems:[{
+              key:"custom1",
+              icon:"icon-marvelIcon_2-05",
+              value:"a"
+            },{
+              key:"custom2",
+              icon:"",
+              value:"icon-marvelIcon_2-06"
+            }]
           },
           {
             name: "bbb",
             id: "bbb",
-            priority: 2
+            priority: 2,
+            customItems:[{
+              key:"custom1",
+              icon:"icon-marvelIcon_2-05",
+              value:"b",
+              color:"#3399ff"
+            },{
+              key:"custom2",
+              icon:"",
+              value:"icon-marvelIcon_2-06"
+            }]
           },
           {
             name: "ccc",
             id: "ccc",
-            priority: 3
+            priority: 3,
+            customItems:[{
+              key:"custom1",
+              icon:"icon-marvelIcon_2-05",
+              value:"c"
+            },{
+              key:"custom2",
+              icon:"",
+              value:"icon-marvelIcon_2-06"
+            }]
           },
           {
             name: "ddd",
             id: "ddd",
-            priority: 4
+            priority: 4,
+            customItems:[{
+              key:"custom1",
+              icon:"icon-marvelIcon_2-05",
+              value:"d"
+            },{
+              key:"custom2",
+              icon:"",
+              value:"icon-marvelIcon_2-06"
+            }]
           },
           {
             name: "eee",
             id: "eee",
-            priority: 5
+            priority: 5,
+            customItems:[{
+              key:"custom1",
+              icon:"icon-marvelIcon_2-05",
+              value:"e"
+            },{
+              key:"custom2",
+              icon:"",
+              value:"icon-marvelIcon_2-06"
+            }]
           },
           {
             name: "fff",
             id: "fff",
-            priority: 6
+            priority: 6,
+            customItems:[{
+              key:"custom1",
+              icon:"icon-marvelIcon_2-05",
+              value:"f"
+            },{
+              key:"custom2",
+              icon:"",
+              value:"icon-marvelIcon_2-06"
+            }]
           },
           {
             name: "ggg",
             id: "ggg",
-            priority: 7
+            priority: 7,
+            customItems:[{
+              key:"custom1",
+              icon:"icon-marvelIcon_2-05",
+              value:"g"
+            },{
+              key:"custom2",
+              icon:"",
+              value:"icon-marvelIcon_2-06"
+            }]
           }
         ]
         //#endregion
