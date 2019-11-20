@@ -5,10 +5,10 @@
 <script>
   import "natasha-devpanelex/css/MarvelRackPanel.css";
 
-  require('natasha-devpanelex/lib/jquery-3.2.1.min.js');
-  require('natasha-devpanelex/lib/svg.min.js');
-  require('natasha-devpanelex/lib/saveSvgAsPng.js');
-  require('natasha-devpanelex/lib/html2canvas.min.js');
+  require('jquery/dist/jquery.min.js');
+  require('svg.js/dist/svg.min.js');
+  require('save-svg-as-png/saveSvgAsPng.js');
+  require('html2canvas/dist/html2canvas.min.js');
   require('natasha-devpanelex/js/MarvelRackCabinet.js');
 
   /**
