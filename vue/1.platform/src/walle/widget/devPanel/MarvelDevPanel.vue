@@ -4,8 +4,8 @@
 
 <script>
   import "natasha-devpanel/css/MarvelDevPanel.css";
-
-  require('natasha-devpanel/lib/svg.min.js');
+  
+  require('svg.js/dist/svg.min.js');
   require('natasha-devpanel/js/plugins/MarvelDevPanel_1.js');
   require('natasha-devpanel/js/plugins/MarvelDevPanel_2.js');
   require('natasha-devpanel/js/plugins/MarvelDevPanel_3.js');
