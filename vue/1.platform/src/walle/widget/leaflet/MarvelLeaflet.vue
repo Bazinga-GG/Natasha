@@ -5,7 +5,7 @@
 
 <script>
   import "leaflet/dist/leaflet.css";
-  import "natasha-gis/lib/leaflet.custom.css";
+  import "natasha-gis/css/leaflet.custom.css";
   import "leaflet.polylinemeasure/Leaflet.PolylineMeasure.css";
   import "natasha-gis/css/MarvelGis.css";
   import "@skyraptor/leaflet.pm/dist/leaflet.pm.css";

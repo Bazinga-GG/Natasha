@@ -1,9 +1,14 @@
 {
   "name": "natasha-gis",
-  "version": "1.0.10",
+  "version": "1.0.12",
   "description": "natasha-gis widget",
   "author": "author",
   "private": false,
+  "files": [
+    "css",
+    "image",
+    "js"
+  ],
   "dependencies": {
     "leaflet.heat": "0.2.0",
     "@skyraptor/leaflet.pm": "2.1.1",
