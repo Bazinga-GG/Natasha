@@ -69,10 +69,11 @@
                 //endregion
 
                 //region 1.init tileLayer
+                window.map = self.mapObj;
                 var oIndoorLayer = L.tileLayer.deepzoom(oOptions.indoorMapUrl, {
                     width: 4020,
                     height: 2680
-                }, self.mapObj);
+                });
                 oIndoorLayer.addTo(self.mapObj);
                 self.mapObj.fitBounds(oIndoorLayer.options.bounds);
                 //endregion

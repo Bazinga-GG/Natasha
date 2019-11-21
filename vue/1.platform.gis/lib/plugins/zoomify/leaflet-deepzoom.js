@@ -14,7 +14,7 @@ L.TileLayer.DeepZoom = L.TileLayer.extend({
 		maxZoom: undefined
 	},
 
-	initialize: function (url, options, map) {
+	initialize: function (url, options) {
 		var options = L.setOptions(this, options);
 		this._url = url;
 		
@@ -99,6 +99,6 @@ L.TileLayer.DeepZoom = L.TileLayer.extend({
 
 });
 
-L.tileLayer.deepzoom = function (url, options, map) {
-	return new L.TileLayer.DeepZoom(url, options, map);
+L.tileLayer.deepzoom = function (url, options) {
+	return new L.TileLayer.DeepZoom(url, options);
 };
