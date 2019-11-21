@@ -4,21 +4,24 @@
 </template>
 
 <script>
-  import "natasha-gis/lib/leaflet.css";
+  import "leaflet/dist/leaflet.css";
   import "natasha-gis/lib/leaflet.custom.css";
-  import "natasha-gis/lib/plugins/leaflet.PolylineMeasure/Leaflet.PolylineMeasure.css";
+  import "leaflet.polylinemeasure/Leaflet.PolylineMeasure.css";
   import "natasha-gis/css/MarvelGis.css";
-  import "natasha-gis/lib/plugins/leaflet.pm/leaflet.pm.css";
+  import "@skyraptor/leaflet.pm/dist/leaflet.pm.css";
 
-  window.keyboardJS = require('natasha-gis/lib/keyboard.min.js');
-  require('natasha-gis/lib/jquery-3.2.1.min.js');
-  require('natasha-gis/lib/leaflet.js');
-  require('natasha-gis/lib/plugins/leaflet.heat/leaflet.heat.js');
-  require('natasha-gis/lib/plugins/leaflet.polylineDecorator/leaflet.polylineDecorator.js');
-  require('natasha-gis/lib/plugins/zoomify/leaflet-deepzoom.js');
-  require('natasha-gis/lib/plugins/leaflet-easyPrint/bundle.js');
-  require('natasha-gis/lib/plugins/leaflet.PolylineMeasure/Leaflet.PolylineMeasure.js');
-  require('natasha-gis/lib/plugins/leaflet.pm/leaflet.pm.min.js');
+  window.keyboardJS = require('keyboardjs/dist/keyboard.min.js');
+  require('jquery/dist/jquery.min.js');
+
+  require('leaflet/dist/leaflet.js');
+  require('leaflet.heat/dist/leaflet-heat.js');
+  require('leaflet-polylinedecorator/dist/leaflet.polylineDecorator.js');
+  require('leaflet-deepzoom/leaflet-deepzoom.js');
+  require('leaflet.polylinemeasure/Leaflet.PolylineMeasure.js');
+  require('leaflet-easyprint/dist/bundle.js');
+  require('@skyraptor/leaflet.pm/dist/leaflet.pm.min.js');
+
+
   require('natasha-gis/js/_1_stage/MarvelGisStage.js');
   require('natasha-gis/js/_2_layer/MarvelGisLayer.js');
   require('natasha-gis/js/_3_sprite/MarvelGisSprite.js');

@@ -38,7 +38,7 @@
             <button v-on:click="oTest4HideAllLabel">test4HideAllLabel</button>
             <button v-on:click="oTest4ShowLabelByIds">oTest4ShowLabelByIds</button>
             <button v-on:click="oTest4HideLabelByIds">oTest4HideLabelByIds</button>
-            <div style="width: 100%;height: 500px;">
+            <div style="width: 100%;height: 700px;">
               <marvel-leaflet ref="ref0" id="gisMapId1"
                               v-on:onZoom="onZoom"
                               v-on:onClick="onClick"
@@ -622,7 +622,7 @@
   /*document fix  style end*/
   /*document custom style start*/
   .showArea {
-    height: 400px;
+    height: 850px;
   }
 
   /*document custom style end*/
