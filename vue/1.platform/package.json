@@ -25,7 +25,7 @@
 
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
-    "jquery": "^3.2.1",
+    "jquery": "3.4.1",
 
     "ace-builds": "1.4.1",
     "natasha-devpanel": "^1.0.11",
