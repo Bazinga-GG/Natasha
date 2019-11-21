@@ -5,9 +5,9 @@
 <script>
   import 'natasha-topo/css/MarvelTopo.css';
 
-  window.keyboardJS = require('natasha-topo/lib/keyboard.min.js');
-  require('natasha-topo/lib/konva.min.js');
-  require('natasha-topo/lib/jquery-3.2.1.min.js');
+  window.keyboardJS = require('keyboardjs/dist/keyboard.min.js');
+  require('konva/konva.min.js');
+  require('jquery/dist/jquery.min.js');
   require('natasha-topo/js/_1_stage/MarvelTopoResource.js');
   require('natasha-topo/js/_1_stage/MarvelTopoStage.js');
   require('natasha-topo/js/_2_layer/MarvelTopoLayer.js');

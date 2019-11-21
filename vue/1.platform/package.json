@@ -1,6 +1,6 @@
 {
   "name": "natasha-vue",
-  "version": "1.0.45",
+  "version": "1.0.47",
   "description": "natasha-vue",
   "author": "Author",
   "private": false,
@@ -33,7 +33,7 @@
     "natasha-gis": "^1.0.12",
     "natasha-icon": "^1.0.12",
     "natasha-fui": "^1.0.2",
-    "natasha-topo": "^1.0.7"
+    "natasha-topo": "^1.0.9"
   },
   "devDependencies": {},
   "engines": {

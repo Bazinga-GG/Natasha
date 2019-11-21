@@ -1,9 +1,19 @@
 {
   "name": "natasha-topo",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "natasha-topo widget",
   "author": "author",
   "private": false,
+  "files": [
+    "css",
+    "image",
+    "js"
+  ],
+  "dependencies": {
+    "konva": "1.7.6",
+    "keyboardjs": "2.3.3",
+    "jquery": "^3.2.1"
+  },
   "engines": {
     "node": ">= 6.0.0",
     "npm": ">= 3.0.0"
