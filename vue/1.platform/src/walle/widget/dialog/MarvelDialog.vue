@@ -11,7 +11,7 @@
              v-on:mousemove="mouseMove"
              v-on:mouseout="mouseUp"
              v-on:mouseup="mouseUp"></div>
-        <div class="closeBtn icon-marvelIcon-20"
+        <div v-if="showDialogCloseBtn" class="closeBtn icon-marvelIcon-20"
              v-on:click="onClickDialogClose"></div>
       </div>
       <div class="tipDialogContArea" v-bind:class="{hasFoot:hasFoot}">
