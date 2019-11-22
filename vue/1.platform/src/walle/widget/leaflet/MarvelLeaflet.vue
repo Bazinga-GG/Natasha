@@ -14,10 +14,10 @@
   require('jquery/dist/jquery.min.js');
 
   require('leaflet/dist/leaflet.js');
+  require('leaflet.polylinemeasure/Leaflet.PolylineMeasure.js');
   require('leaflet.heat/dist/leaflet-heat.js');
   require('leaflet-polylinedecorator/dist/leaflet.polylineDecorator.js');
   require('leaflet-deepzoom/leaflet-deepzoom.js');
-  require('leaflet.polylinemeasure/Leaflet.PolylineMeasure.js');
   require('leaflet-easyprint/dist/bundle.js');
   require('@skyraptor/leaflet.pm/dist/leaflet.pm.min.js');
 
