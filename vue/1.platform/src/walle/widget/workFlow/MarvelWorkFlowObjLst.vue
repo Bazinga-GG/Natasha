@@ -393,6 +393,11 @@
 
       //#endregion
       //#region 3rd
+      
+      resetListFoot: function () {
+        this.$refs['objLstGrid' + this.componentId].resetFoot();
+      }
+      
       //#endregion
     },
     watch: {

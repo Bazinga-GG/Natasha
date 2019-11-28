@@ -13,7 +13,7 @@
         <div class="priorityItemIndex" style="width: 240px;">{{index + 1}}</div>
         <div class="priorityItemName" :style="itemNameWidth">{{item.name}}</div>
         <div class="priorityItemCustom" v-for="customItem in item.customItems"
-             :style="{width:_getCustomWByKey(customItem.key)}" :class="customItem.icon">{{customItem.value}}</div>
+             :style="{width:_getCustomWByKey(customItem.key),color:customItem.color}" :class="customItem.icon">{{customItem.value}}</div>
       </div>
     </div>
     <div class="priorityRightPart">
@@ -282,6 +282,10 @@
 
   .isSelected .priorityItemName {
     color: #ffffff;
+  }
+
+  .isSelected .priorityItemCustom{
+    color: #ffffff !important;
   }
 
   .priorityRightPart {

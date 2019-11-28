@@ -1,6 +1,6 @@
 {
   "name": "natasha-gis",
-  "version": "1.0.12",
+  "version": "1.1.0",
   "description": "natasha-gis widget",
   "author": "author",
   "private": false,
@@ -16,9 +16,7 @@
     "leaflet.polylinemeasure": "2.0.0",
     "leaflet-easyprint": "2.1.8",
     "leaflet-deepzoom": "2.0.0",
-
     "leaflet": "1.2.0",
-
     "keyboardjs": "2.3.3",
     "jquery": "3.4.1"
   },

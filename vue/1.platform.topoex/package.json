@@ -1,9 +1,19 @@
 {
   "name": "natasha-topoex",
-  "version": "1.0.0",
+  "version": "1.1.2",
   "description": "natasha-topoex widget",
   "author": "author",
   "private": false,
+  "files": [
+    "css",
+    "image",
+    "js",
+    "utils"
+  ],
+  "dependencies": {
+    "keyboardjs": "2.3.3",
+    "jquery": "3.4.1"
+  },
   "engines": {
     "node": ">= 6.0.0",
     "npm": ">= 3.0.0"
