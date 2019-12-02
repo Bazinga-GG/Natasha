@@ -1503,10 +1503,10 @@ multiDropdown：下拉框多选，支持度不好，待优化
 
   .GridExWithFreezeColumnWrapper .columnConfig {
     width: 30px;
-    height: 28px;
+    height: 30px;
     position: absolute;
     top: 1px;
-    right: 8px;
+    right: 0px;
     line-height: 28px;
     text-align: center;
     background-color: #eee;

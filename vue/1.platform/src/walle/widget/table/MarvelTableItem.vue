@@ -1490,7 +1490,7 @@ multiDropdown：下拉框多选，支持度不好，待优化
   .gridWrapper .grid .gridCont thead tr th:last-child:after {
     content: "";
     height: 30px;
-    background-color: #eee;
+    background-color: #e1e4e5;
     width: 8px;
     display: inline-block;
     position: absolute;
