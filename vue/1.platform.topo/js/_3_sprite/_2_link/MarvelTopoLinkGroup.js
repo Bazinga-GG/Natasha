@@ -211,7 +211,7 @@
             oTopo.ins.layerLink.add(oGroup);
 
             //event
-            oLine.on("click", function (evt) {
+            oLine.on("mousedown", function (evt) {
                 console.log("link click");
                 _onLinkClick(oGroup, evt, oTopo);
             });
@@ -370,14 +370,23 @@
                     oTopo.Layer.reDraw(oTopo.ins.layerLink);
                 }
                 else {
-                    //1.2.unSelect current oGroup
-                    _handle4UnSelectLink(oGroup, evt, oTopo);
+                    //如果是左键单击
+                    if (oTopo.Utils.isLeftClick(evt.evt)) {
+                        //1.2.unSelect current oGroup
+                        _handle4UnSelectLink(oGroup, evt, oTopo);
 
-                    oTopo.Layer.reDraw(oTopo.ins.layerLink);
+                        oTopo.Layer.reDraw(oTopo.ins.layerLink);
+                    }
+                    else {
+                        return;
+                    }
                 }
             }
             //2.ctrl not press
             else {
+                if (oGroup.tag.uiSelectLink == true) {
+                    return;
+                }
                 //2.1.unSelectAll
                 self.unSelectLinks(oTopo);
                 oTopo.Sprite.NodeGroup.unSelectNodeGroupAndNodes(oTopo);
@@ -517,7 +526,7 @@
                 if (oChild.className !== "Label") {
                     oChild.shadowEnabled(true);
                     oChild.shadowColor(oTopo.Resource.getTheme().link.selectColor);
-                    oChild.shadowBlur(5);
+                    oChild.shadowBlur(10);
                     oChild.shadowOffset({
                         x: 0,
                         y: 0
@@ -536,22 +545,34 @@
         };
 
         var _setMouseHoverStyle = function (oGroup, oTopo) {
-            document.body.style.cursor = 'pointer';
+            // document.body.style.cursor = 'pointer';
+            oTopo.ins.stage.container().style.cursor = "pointer";
+
+            //添加选中的样式
+            if (oGroup.tag.uiSelectLink != true) {
+                _setSelectLinkStyle(oGroup, oTopo);
+            }
 
             oGroup.children.forEach(function (oChild) {
-                oChild.shadowEnabled(true);
-                oChild.shadowColor("rgba(255,255,255,0.75)");
-                oChild.shadowBlur(5);
+                oChild.strokeWidth(oChild.strokeWidth() * 1.2);
+                oChild.shadowBlur(oChild.shadowBlur() * 1.2);
             });
 
             oTopo.Layer.reDraw(oTopo.ins.layerLink);
         };
 
         var _setMouseHoverOutStyle = function (oGroup, oTopo) {
-            document.body.style.cursor = 'default';
+            // document.body.style.cursor = 'default';
+            oTopo.ins.stage.container().style.cursor = "default";
+
+            //去掉选中的样式
+            if (oGroup.tag.uiSelectLink != true) {
+                _setUnSelectLinkStyle(oGroup, oTopo);
+            }
 
             oGroup.children.forEach(function (oChild) {
-                oChild.shadowEnabled(false);
+                oChild.strokeWidth(oChild.strokeWidth() / 1.2);
+                oChild.shadowBlur(oChild.shadowBlur() / 1.2);
             });
             oTopo.Layer.reDraw(oTopo.ins.layerLink);
         };
@@ -895,7 +916,7 @@
         };
 
         var _getLinkColor = function (oBuObj, oTopo) {
-            return oTopo.Resource.getTheme().link.linkColor[oBuObj.uiLinkColorKey];
+            return oTopo.Resource.getTheme().link.linkColor[oBuObj.uiLinkColorKey] || "#888888";
         };
 
         var _getLinkWidth = function (oBuObj, oTopo) {
@@ -911,7 +932,7 @@
         };
 
         var _getCenterLabelColor = function (oBuObj, oTopo) {
-            return oTopo.Resource.getTheme().link.labelColor;
+            return oTopo.Resource.getTheme().link.labelColor || "#888888";
         };
 
         var _genLinkTitle = function (oBuObj, oTopo) {

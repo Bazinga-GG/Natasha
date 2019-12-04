@@ -29,7 +29,7 @@
         this.draw = function (oBuObj, oTopo) {
             //region 0._destroyNodeById
 
-            _destroyNodeById(oBuObj.id, oTopo);
+            _destroyNodeById(oBuObj.id, false, oTopo);
 
             //endregion
 
@@ -50,6 +50,10 @@
                 y: oPos.y,
                 visible: oBuObj.uiHide == true ? false : true,
                 opacity: oBuObj.uiOpacity != undefined ? oBuObj.uiOpacity : 1.0,
+                transformsEnabled: "position",//"all","none"
+                strokeHitEnabled: false,
+                perfectDrawEnabled: false,
+                shadowForStrokeEnabled: false,
                 draggable: true
             });
             oGroup.tag = oBuObj;
@@ -60,6 +64,9 @@
                 y: 0,
                 image: oTopo.Resource.m_mapImage[oBuObj.uiImgKey],
                 opacity: oGroup.opacity(),
+                transformsEnabled: "position",//"all","none"
+                strokeHitEnabled: false,
+                perfectDrawEnabled: false,
                 width: ICON_WIDTH,
                 height: ICON_HEIGHT
             });
@@ -71,16 +78,43 @@
                 y: 0,
                 text: oBuObj.uiLabel,
                 opacity: oGroup.opacity(),
-                fill: oTopo.Resource.getTheme().node.labelColor
+                transformsEnabled: "position",//"all","none"
+                strokeHitEnabled: false,
+                perfectDrawEnabled: false,
+                fill: _getLabelColor(oTopo)
             });
-            oTopo.Sprite.NodeGroup._setLabelCenter(ICON_WIDTH, ICON_HEIGHT, oLabel);
+            oTopo.Sprite.NodeGroup.setLabelCenter(ICON_WIDTH, ICON_HEIGHT, oLabel);
             oGroup.add(oLabel);
+
+            //3.附属标识
+            if (oBuObj.attachment) {
+                var oStar = new Konva.Star({
+                    x: ICON_WIDTH - 8,
+                    y: 8,
+                    numPoints: 5,
+                    innerRadius: 4,
+                    outerRadius: 8,
+                    transformsEnabled: "position",//"all","none"
+                    strokeHitEnabled: false,
+                    perfectDrawEnabled: false,
+                    listening: false,
+                    fill: _getAttachmentColor(oBuObj),
+                    stroke: "#FFFFFF",
+                    strokeWidth: 0.5
+                });
+                oGroup.add(oStar);
+            }
+
+            //4.uiSelect
+            if (oBuObj.uiSelectNode == true) {
+                oTopo.Sprite.NodeGroup.handle4SelectNode(oGroup, null, oTopo);
+            }
 
             //endregion
 
             //region 3.parent
 
-            oTopo.ins.layerNode.add(oGroup);
+            oTopo.Layer.getNodeLayer(oTopo).add(oGroup);
 
             //endregion
 
@@ -93,9 +127,7 @@
                 oTopo.Sprite.NodeGroup._onNodeGroupOrNodeMouseOut(oGroup, oTopo);
             });
             oGroup.on('mousedown', function (evt) {
-                oTopo.Sprite.NodeGroup._onNodeGroupOrNodeClick(oGroup, evt, oTopo);
-                //evt.cancelBubble = true;
-                //evt.evt.stopPropagation();
+                oTopo.Sprite.NodeGroup.onNodeGroupOrNodeClick(oGroup, evt, oTopo);
             });
             oGroup.on('dragmove', function (evt) {
                 oTopo.Sprite.NodeGroup.onNodeOrNodeGroupMove(oGroup, oTopo);
@@ -109,7 +141,7 @@
         this.drawInGroup = function (oBuObj, oExpandGroupExists, oTopo) {
             //region 0._destroyNodeById
 
-            _destroyNodeById(oBuObj.id, oTopo);
+            _destroyNodeById(oBuObj.id, false, oTopo);
 
             //endregion
 
@@ -131,78 +163,86 @@
                 draggable: true,
                 visible: oBuObj.uiHide == true ? false : true,
                 opacity: oBuObj.uiOpacity != undefined ? oBuObj.uiOpacity : 1.0,
+                transformsEnabled: "position",//"all","none"
+                strokeHitEnabled: false,
+                perfectDrawEnabled: false,
+                shadowForStrokeEnabled: false,
                 dragBoundFunc: function (pos) {
                     //pos中的坐标是在canvas上的坐标
                     //算法1：限制在矩形中
-                    // var iScale = oTopo.ins.stage.scaleX();
-                    // var iXMin = oExpandGroupExists.x() * iScale + oTopo.ins.stage.x();
-                    // var iXMax = (oExpandGroupExists.x() + oExpandGroupExists.getChildren()[0].width()) * iScale + oTopo.ins.stage.x();
-                    // var iYMin = oExpandGroupExists.y() * iScale + oTopo.ins.stage.y();
-                    // var iYMax = (oExpandGroupExists.y() + oExpandGroupExists.getChildren()[0].height()) * iScale + oTopo.ins.stage.y();
-                    // var iTargetX = pos.x;
-                    // var iTargetY = pos.y;
-                    // if (iTargetX <= iXMin) {
-                    //     iTargetX = iXMin;
-                    // }
-                    // else if (iTargetX >= iXMax) {
-                    //     iTargetX = iXMax;
-                    // }
-                    // if (iTargetY <= iYMin) {
-                    //     iTargetY = iYMin;
-                    // }
-                    // else if (iTargetY >= iYMax) {
-                    //     iTargetY = iYMax;
-                    // }
-                    // return {
-                    //     x: iTargetX,
-                    //     y: iTargetY
-                    // };
-
-                    //算法2：限制在圆形中
-                    //圆心的坐标
-                    var iScale = oTopo.ins.stage.scaleX();
-                    var iX = (oExpandGroupExists.x() + oExpandGroupExists.getChildren()[0].width() / 2) * iScale + oTopo.ins.stage.x();
-                    var iY = (oExpandGroupExists.y() + oExpandGroupExists.getChildren()[0].height() / 2) * iScale + oTopo.ins.stage.y();
-                    var radius = (oExpandGroupExists.getChildren()[0].width() / 2) * iScale;
-
-                    var iNodeSize = oGroup.getChildren()[0].width() * iScale;
-                    var a;
-                    if (iX == pos.x) {
-                        a = Math.PI / 2;
+                    if (oExpandGroupExists.tag.shape == "Rect") {
+                        var iScale = oTopo.ins.stage.scaleX();
+                        var iXMin = oExpandGroupExists.x() * iScale + oTopo.ins.stage.x();
+                        var iXMax = (oExpandGroupExists.x() + oExpandGroupExists.getChildren()[0].width()) * iScale + oTopo.ins.stage.x();
+                        var iYMin = oExpandGroupExists.y() * iScale + oTopo.ins.stage.y();
+                        var iYMax = (oExpandGroupExists.y() + oExpandGroupExists.getChildren()[0].height()) * iScale + oTopo.ins.stage.y();
+                        var iTargetX = pos.x;
+                        var iTargetY = pos.y;
+                        var iNodeSize = oGroup.getChildren()[0].width() * iScale;
+                        if (iTargetX <= iXMin) {
+                            iTargetX = iXMin;
+                        }
+                        else if (iTargetX >= iXMax - iNodeSize) {
+                            iTargetX = iXMax - iNodeSize;
+                        }
+                        if (iTargetY <= iYMin) {
+                            iTargetY = iYMin;
+                        }
+                        else if (iTargetY >= iYMax - iNodeSize) {
+                            iTargetY = iYMax - iNodeSize;
+                        }
+                        return {
+                            x: pos.x,
+                            y: pos.y
+                        };
                     }
                     else {
-                        a = Math.atan((iY - pos.y) / (iX - pos.x));
-                    }
+                        //算法2：限制在圆形中
+                        //圆心的坐标
+                        var iScale = oTopo.ins.stage.scaleX();
+                        var iX = (oExpandGroupExists.x() + oExpandGroupExists.getChildren()[0].width() / 2) * iScale + oTopo.ins.stage.x();
+                        var iY = (oExpandGroupExists.y() + oExpandGroupExists.getChildren()[0].height() / 2) * iScale + oTopo.ins.stage.y();
+                        var radius = (oExpandGroupExists.getChildren()[0].width() / 2) * iScale;
 
-                    var iTopX = iX - Math.cos(a) * radius;
-                    var iTopY = iY - Math.sin(a) * radius;
-                    var iBottomX = iX + Math.cos(a) * radius;
-                    var iBottomY = iY + Math.sin(a) * radius;
+                        var iNodeSize = oGroup.getChildren()[0].width() * iScale;
+                        var a;
+                        if (iX == pos.x) {
+                            a = Math.PI / 2;
+                        }
+                        else {
+                            a = Math.atan((iY - pos.y) / (iX - pos.x));
+                        }
 
-                    var iXMin = Math.min(iTopX, iBottomX);
-                    var iXMax = Math.max(iTopX, iBottomX);
+                        var iTopX = iX - Math.cos(a) * radius;
+                        var iTopY = iY - Math.sin(a) * radius;
+                        var iBottomX = iX + Math.cos(a) * radius;
+                        var iBottomY = iY + Math.sin(a) * radius;
 
-                    var iYMin = Math.min(iTopY, iBottomY);
-                    var iYMax = Math.max(iTopY, iBottomY);
+                        var iXMin = Math.min(iTopX, iBottomX);
+                        var iXMax = Math.max(iTopX, iBottomX);
 
-                    var iTargetX = pos.x;
-                    var iTargetY = pos.y;
-                    if (iTargetX <= iXMin) {
-                        iTargetX = iXMin;
+                        var iYMin = Math.min(iTopY, iBottomY);
+                        var iYMax = Math.max(iTopY, iBottomY);
+
+                        var iTargetX = pos.x;
+                        var iTargetY = pos.y;
+                        if (iTargetX <= iXMin) {
+                            iTargetX = iXMin;
+                        }
+                        else if (iTargetX >= iXMax - iNodeSize) {
+                            iTargetX = iXMax - iNodeSize;
+                        }
+                        if (iTargetY <= iYMin) {
+                            iTargetY = iYMin;
+                        }
+                        else if (iTargetY >= iYMax - iNodeSize) {
+                            iTargetY = iYMax - iNodeSize;
+                        }
+                        return {
+                            x: iTargetX,
+                            y: iTargetY
+                        };
                     }
-                    else if (iTargetX >= iXMax - iNodeSize) {
-                        iTargetX = iXMax - iNodeSize;
-                    }
-                    if (iTargetY <= iYMin) {
-                        iTargetY = iYMin;
-                    }
-                    else if (iTargetY >= iYMax - iNodeSize) {
-                        iTargetY = iYMax - iNodeSize;
-                    }
-                    return {
-                        x: iTargetX,
-                        y: iTargetY
-                    };
                 }
             });
             oGroup.tag = oBuObj;
@@ -213,6 +253,9 @@
                 y: 0,
                 image: oTopo.Resource.m_mapImage[oBuObj.uiImgKey],
                 opacity: oGroup.opacity(),
+                transformsEnabled: "position",//"all","none"
+                strokeHitEnabled: false,
+                perfectDrawEnabled: false,
                 width: ICON_WIDTH,
                 height: ICON_HEIGHT
             });
@@ -223,11 +266,37 @@
                 x: 0,
                 y: 0,
                 text: oBuObj.uiLabel,
+                transformsEnabled: "position",//"all","none"
+                strokeHitEnabled: false,
+                perfectDrawEnabled: false,
                 opacity: oGroup.opacity(),
-                fill: oTopo.Resource.getTheme().node.labelColor
+                fill: _getLabelColor(oTopo)
             });
-            oTopo.Sprite.NodeGroup._setLabelCenter(ICON_WIDTH, ICON_HEIGHT, oLabel);
+            oTopo.Sprite.NodeGroup.setLabelCenter(ICON_WIDTH, ICON_HEIGHT, oLabel);
             oGroup.add(oLabel);
+
+            //3.附属标识
+            if (oBuObj.attachment) {
+                var oStar = new Konva.Star({
+                    x: ICON_WIDTH - 8,
+                    y: 8,
+                    numPoints: 5,
+                    innerRadius: 4,
+                    outerRadius: 8,
+                    transformsEnabled: "position",//"all","none"
+                    strokeHitEnabled: false,
+                    perfectDrawEnabled: false,
+                    fill: _getAttachmentColor(oBuObj),
+                    stroke: "#FFFFFF",
+                    strokeWidth: 0.5
+                });
+                oGroup.add(oStar);
+            }
+
+            //4.uiSelect
+            if (oBuObj.uiSelectNode == true) {
+                oTopo.Sprite.NodeGroup.handle4SelectNode(oGroup, null, oTopo);
+            }
 
             //endregion
 
@@ -246,12 +315,16 @@
                 oTopo.Sprite.NodeGroup._onNodeGroupOrNodeMouseOut(oGroup, oTopo);
             });
             oGroup.on('mousedown', function (evt) {
-                oTopo.Sprite.NodeGroup._onNodeGroupOrNodeClick(oGroup, evt, oTopo);
+                oTopo.Sprite.NodeGroup.onNodeGroupOrNodeClick(oGroup, evt, oTopo);
                 //evt.evt.cancelBubble = true;
                 //evt.evt.stopPropagation();
             });
             oGroup.on('dragmove', function (evt) {
                 oTopo.Sprite.NodeGroup.onNodeOrNodeGroupMove(oGroup, oTopo);
+                //2.判断父节点是否需要跟随变化
+                if (oExpandGroupExists.tag.shape == "Rect") {
+                    oTopo.Sprite.NodeGroup.updateParentGroup(oExpandGroupExists, oTopo);
+                }
             });
 
             //endregion
@@ -273,6 +346,14 @@
         //endregion
 
         //region style
+
+        var _getLabelColor = function (oTopo) {
+            return oTopo.Resource.getTheme().node.labelColor || "#888888";
+        };
+
+        var _getAttachmentColor = function (oBuObj) {
+            return oBuObj.attachment.color || "#FF0000";
+        };
 
         //endregion
 
@@ -345,8 +426,8 @@
             createNodeData.buObj.x = oPos.x;
             createNodeData.buObj.y = oPos.y;
             //绘制网元
-            self.draw(createNodeData.buObj, oTopo);
-            oTopo.Layer.reDraw(oTopo.ins.layerNode);
+            var oGroup = self.draw(createNodeData.buObj, oTopo);
+            oGroup.getLayer().batchDraw();
         };
 
         this.stageEventMouseMove = function (oEvent, oTopo) {
@@ -356,7 +437,7 @@
                 //更新网元坐标
                 oNode.x(oPos.x);
                 oNode.y(oPos.y);
-                oTopo.Layer.reDraw(oTopo.ins.layerNode);
+                oNode.getLayer().batchDraw();
             }
         };
 
@@ -372,7 +453,7 @@
                 oNode.tag.y = oPos.y;
                 oNode.x(oPos.x);
                 oNode.y(oPos.y);
-                oTopo.Layer.reDraw(oTopo.ins.layerNode);
+                oNode.getLayer().batchDraw();
             }
             //createNodeEnd
             _createNodeEnd(oTopo, true);
@@ -386,7 +467,7 @@
             if (!createNodeData.continue || !bCreatedSuccessful) {
                 oTopo.Stage.updateModel(oTopo.Stage.MODEL_EMPTY);
                 if (createNodeData.autoCreate === false) {
-                    _destroyNodeById(createNodeData.buObj.id, oTopo);
+                    _destroyNodeById(createNodeData.buObj.id, true, oTopo);
                 }
                 //clear cache
                 createNodeData.buObj = undefined;
@@ -398,14 +479,17 @@
         };
 
         this.stageEventMouseLeave = function (oEvent, oTopo) {
-            _destroyNodeById(createNodeData.buObj.id, oTopo);
+            _destroyNodeById(createNodeData.buObj.id, true, oTopo);
         };
 
-        var _destroyNodeById = function (strId, oTopo) {
+        var _destroyNodeById = function (strId, bReDraw, oTopo) {
             var oNode = oTopo.Stage.findOne(strId, oTopo);
             if (oNode) {
+                var layer = oNode.getLayer();
                 oNode.destroy();
-                oTopo.Layer.reDraw(oTopo.ins.layerNode);
+                if (bReDraw) {
+                    layer.batchDraw();
+                }
             }
         };
 
@@ -413,8 +497,9 @@
             if (createNodeData.status == STATUS_START) {
                 var oNode = oTopo.Stage.findOne(createNodeData.buObj.id, oTopo);
                 if (oNode) {
+                    var layer = oNode.getLayer();
                     oNode.destroy();
-                    oTopo.Layer.reDraw(oTopo.ins.layerNode);
+                    layer.batchDraw();
                 }
                 //取消创建
                 _createNodeEnd(oTopo, false);

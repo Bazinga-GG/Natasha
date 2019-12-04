@@ -17,11 +17,11 @@
 
         this.ins = {
             stage: undefined,
-            layerNode: undefined,
             layerLink: undefined,
             layerBg: undefined,
             layerTemp: undefined,
-            layerTooltip: undefined
+            layerTooltip: undefined,
+            nodeLayers: []
         };
 
         //endregion

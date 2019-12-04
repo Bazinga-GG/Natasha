@@ -66,7 +66,7 @@
             //endregion
 
             //region 2.init oStage
-
+            Konva.pixelRatio = 1;
             var oStage = new Konva.Stage({
                 id: $.MarvelTopoStage.id++,
                 container: strId,
@@ -79,6 +79,8 @@
 
             //region 3.event
 
+            //resize事件
+            _initEventResize(strId, oStage, oTopo);
             //滚轮缩放
             _initEventWheel(strId, oStage, oTopo);
             //stage拖动
@@ -99,6 +101,10 @@
             _initEventMouseLeave(oStage, oTopo);
             //右键事件
             _initContextmenu(oStage, oTopo);
+            $("#" + strId).contextmenu(function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            });
 
             //endregion
 
@@ -117,6 +123,27 @@
         //endregion
 
         //region event
+
+        //region resize事件
+
+        var _initEventResize = function (strId, oStage, oTopo) {
+            window.addEventListener("resize", function () {
+                _resize(oTopo);
+            });
+        };
+
+        var _resize = function (oTopo) {
+            var oElement = oTopo.ins.stage.container();
+            var iWidth = oElement.clientWidth;
+            var iHeight = oElement.clientHeight;
+            //state
+            oTopo.ins.stage.width(iWidth);
+            oTopo.ins.stage.height(iHeight);
+            //background
+            oTopo.Layer.setBackgroundSize(iWidth, iHeight, oTopo);
+        };
+
+        //endregion
 
         //region 滚轮事件
         var _initEventWheel = function (strId, oStage, oTopo) {
@@ -215,6 +242,8 @@
                 //按下空格键才可以拖动
                 _setDraggable4Stage(true, oTopo);
                 keyboardJS.isSpacePress = true;
+                //阻止默认事件
+                e.preventDefault();
             }, function (e) {
                 _setDraggable4Stage(false, oTopo);
                 keyboardJS.isSpacePress = false;
@@ -383,6 +412,10 @@
 
         this.setConfig = function (oConfig) {
             Object.assign(self.config, oConfig);
+        };
+
+        this.resize = function (oTopo) {
+            _resize(oTopo);
         };
 
         //endregion

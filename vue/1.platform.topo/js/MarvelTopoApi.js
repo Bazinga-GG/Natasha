@@ -87,11 +87,12 @@
             for (var i = 0; i < oTopoData.nodes.length; i++) {
                 oTopo.Sprite.Node.draw(oTopoData.nodes[i], oTopo);
             }
-            oTopo.Layer.reDraw(oTopo.ins.layerNode);
 
             //2.3.links
             oTopo.Sprite.LinkGroup.draw(oTopoData.links, oTopo);
-            oTopo.Layer.reDraw(oTopo.ins.layerLink);
+
+            //绘制
+            oTopo.ins.stage.batchDraw();
         };
 
         this.expandAllNodeGroup = function (oTopo) {
@@ -110,8 +111,8 @@
             oTopo.Sprite.LinkGroup.collapseAllLinkGroup(oTopo);
         };
 
-        this.selectNodesById = function (oTopo, arrNodeId) {
-            oTopo.Sprite.NodeGroup.selectNodesById(arrNodeId, oTopo);
+        this.selectNodesById = function (oTopo, arrNodeId, bCenter) {
+            oTopo.Sprite.NodeGroup.selectNodesById(arrNodeId, bCenter, oTopo);
         };
 
         this.selectLinksById = function (oTopo, arrLinkId) {
@@ -383,6 +384,53 @@
 
         this.setConfig = function (oTopo, oConfig) {
             oTopo.Stage.setConfig(oConfig);
+        };
+
+        this.exportPicture = function (oTopo, strPicName) {
+            var regPng = /\.png$/;
+            var regJpeg = /\.jpeg$/;
+            var mimeType;
+            if (regPng.test(strPicName)) {
+                mimeType = "image/png"
+            }
+            else if (regJpeg.test(strPicName)) {
+                mimeType = "image/jpeg";
+            }
+            else {
+                console.info("picture name must end with .png or .jpeg");
+                return;
+            }
+            oTopo.ins.stage.toDataURL({
+                mimeType: mimeType,
+                quality: 1,
+                callback: function (oImage) {
+                    var oElement = document.createElement("a");
+                    oElement.href = oImage;
+                    oElement.download = strPicName;
+                    oElement.click();
+                }
+            });
+        };
+
+        this.resize = function (oTopo) {
+            oTopo.Stage.resize(oTopo);
+        };
+
+        //必须在鼠标在Topo区域中时调用
+        this.getPointerPos4DrawInStage = function (oTopo) {
+            return oTopo.Stage.getPointerPos4DrawInStage(oTopo);
+        };
+
+        this.existCreateNodeModel = function (oTopo) {
+            if (oTopo.Stage.model === oTopo.Stage.MODEL_CREATE_NODE) {
+                oTopo.Sprite.Node.eventEscPress(null, oTopo);
+            }
+        };
+
+        this.existCreateLinkModel = function (oTopo) {
+            if (oTopo.Stage.model == oTopo.Stage.MODEL_CREATE_LINK) {
+                oTopo.Sprite.LinkGroup.eventEscPress(null, oTopo);
+            }
         };
 
         //endregion

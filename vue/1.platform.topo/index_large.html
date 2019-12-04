@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Large Data</title>
+    <link type="text/css" rel="stylesheet" href="css/MarvelTopo.css"/>
+</head>
+<body>
+<div>
+    <button id="init">init</button>
+</div>
+<div id="id1" style="width: 1000px; height: 600px; border: 1px solid red;"></div>
+
+<script type="application/javascript" src="./node_modules/konva/konva.min.js"></script>
+<script type="application/javascript" src="./node_modules/keyboardjs/dist/keyboard.min.js"></script>
+<script type="application/javascript" src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script type="application/javascript" src="js/_1_stage/MarvelTopoResource.js"></script>
+<script type="application/javascript" src="js/_1_stage/MarvelTopoStage.js"></script>
+<script type="application/javascript" src="js/_2_layer/MarvelTopoLayer.js"></script>
+<script type="application/javascript" src="js/_3_sprite/_1_node/MarvelTopoNodeGroup.js"></script>
+<script type="application/javascript" src="js/_3_sprite/_1_node/MarvelTopoNode.js"></script>
+<script type="application/javascript" src="js/_3_sprite/_2_link/MarvelTopoLinkGroup.js"></script>
+<script type="application/javascript" src="js/_3_sprite/_2_link/MarvelTopoLink.js"></script>
+<script type="application/javascript" src="js/_3_sprite/_3_box/MarvelTopoBoxGroup.js"></script>
+<script type="application/javascript" src="js/_3_sprite/_3_box/MarvelTopoBox.js"></script>
+<script type="application/javascript" src="js/_3_sprite/MarvelTopoSprite.js"></script>
+<script type="application/javascript" src="js/MarvelTopoApi.js"></script>
+<script type="application/javascript" src="js/MarvelTopoUtils.js"></script>
+<script type="application/javascript" src="js/MarvelTopo.js"></script>
+<script>
+    $(document).ready(function () {
+        //region mock
+        var arrNode = [];
+        var arrLink = [];
+        var arrNodeGroup = [];
+        var iNodeNum = 1000;
+        for (var i = 1; i <= iNodeNum; i++) {
+            var oNode = {
+                id: "node" + i,
+                x: Math.random() * 1000,
+                y: Math.random() * 600,
+                uiHide: false, //隐藏
+                uiOpacity: 1,
+                uiImgKey: "node",
+                uiLabel: "node" + i,
+                uiTip: "node" + i,
+                uiTitle: "node" + i,
+                uiNode: true
+            };
+            arrNode.push(oNode);
+        }
+
+        var iLinkNum = 0;
+        for (var i = 1; i <= iLinkNum; i++) {
+            var oLink = {
+                id: "link" + i,
+                srcNodeId: "node" + Math.ceil(Math.random() * iNodeNum),
+                dstNodeId: "node" + Math.ceil(Math.random() * iNodeNum),
+                uiLabelL: "link" + i,
+                uiLabelM: "link" + i,
+                uiTip: "link" + i,
+                uiTitle: "link" + i,
+                uiLabelR: "link" + i,
+                uiLink: true,
+                uiLinkColorKey: "linkType_fiber",
+                uiLinkWidth: 3,
+                uiDirection: 2,
+            };
+            arrLink.push(oLink);
+        }
+        //endregion
+
+        $("#init").click(function () {
+            var oTopo = new $.MarvelTopo();
+            window.oTopo = oTopo;
+
+            var THEME_KEY = "dark";
+
+            var IMG_MAP = {
+                nodeGroup: "image/" + THEME_KEY + "/nodeGroup1.svg",
+                nodeGroupExpand: "image/" + THEME_KEY + "/nodeGroupExpand.svg",
+                node: "image/" + THEME_KEY + "/node1.svg"
+            };
+
+            var THEME_DARK = {
+                dark: {
+                    stage: {
+                        bgColor: "#272743",
+                        bgImg: "url('image/dark/bg.png')"
+                    },
+                    node: {
+                        labelColor: "#fff",
+                        selectColor: "#FFFFFF"
+                    },
+                    link: {
+                        labelColor: "#fff",
+                        selectColor: '#ffff00',
+                        linkColor: {
+                            linkType1: "#ababb5",
+                            linkType2: "#FF4c4c",
+                            linkType3: "#ff8833",
+                            linkType_fiber: "#8b90b3",
+                            linkType_lu_1: "#3b3e4c",
+                            linkType_lu_2: "#3dcca6",
+                            linkType_lu_3: "#ff8833",
+                            linkType_lu_4: "#ff4c4c",
+                            linkType_wf: "#006ad4",
+                            linkType_fp: "#f464ac",
+                            linkType_rw: "#3399ff",
+                            linkType_rp: "#94c94f"
+                        }
+                    }
+                }
+            };
+
+            oTopo.Api.init(oTopo, {
+                id: "id1",
+                themeKey: THEME_KEY,
+                imgMap: IMG_MAP,
+                themeSetting: THEME_DARK,
+                eventOptions: {},
+            }, function () {
+                oTopo.Api.draw(oTopo, {
+                    nodeGroups: arrNodeGroup,
+                    nodes: arrNode,
+                    links: arrLink
+                });
+            });
+        });
+    });
+</script>
+</body>
+</html>

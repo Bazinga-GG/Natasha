@@ -134,7 +134,7 @@
             });
 
             //select
-            oTopo.Sprite.NodeGroup.selectNodesById(arrNodeId, oTopo);
+            oTopo.Sprite.NodeGroup.selectNodesById(arrNodeId, false, oTopo);
 
             return arrNodeId;
         };

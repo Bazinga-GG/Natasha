@@ -42,11 +42,11 @@
                     },
                     node: {
                         labelColor: "#fff",
-                        selectColor: "rgba(255,255,255,0.25)"
+                        selectColor: "#FFFFFF"
                     },
                     link: {
                         labelColor: "#fff",
-                        selectColor: 'rgba(255,255,255,0.75)',
+                        selectColor: '#ffff00',
                         linkColor: {
                             linkType1: "#ababb5",
                             linkType2: "#FF4c4c",
@@ -87,6 +87,7 @@
                     uiExpandNodeHeight: 200,
                     uiNode: true,
                     uiOpacity: 1,
+                    shape: i == 0 ? "Rect" : "Circle",
                     children: [{
                         id: "node" + i + "_1",
                         x: 50,
@@ -124,8 +125,14 @@
                     uiLabel: "node" + i,
                     uiTip: "node" + i + "\n" + "This is a tip demo",
                     uiTitle: "node" + i,
+                    uiSelectNode: true,
                     uiNode: true
                 };
+                if (i % 2 == 0) {
+                    oNode.attachment = {
+                        color: "#0000FF"
+                    };
+                }
                 arrNode.push(oNode);
             }
             arrNode.push({
@@ -177,6 +184,7 @@
                     uiLinkColorKey: "linkType_fiber",
                     uiLinkWidth: 3,
                     uiDirection: 2,
+                    uiSelectLink: true,
                     uiDash: [10, 5]
                 };
                 arrLink.push(oLink);
@@ -501,6 +509,8 @@
                     console.log("rightClick");
                     console.log(oBuObj);
                     console.log("position is x: " + iX + ", y: " + iY);
+                    var oPos = oTopo.Api.getPointerPos4DrawInStage(oTopo);
+                    console.log(oPos);
                 },
                 callbackOnPositionUpdate: function (bUpdate) {
                     console.log("callbackOnPositionUpdate: " + bUpdate);
@@ -540,7 +550,7 @@
                 oTopo.Api.collapseAllLinkGroup(oTopo);
             });
             $("#selectNodes").click(function () {
-                oTopo.Api.selectNodesById(oTopo, ["node0", "node1", "node1_1"]);
+                oTopo.Api.selectNodesById(oTopo, ["node0", "node1", "node1_1"], true);
             });
             $("#selectLinks").click(function () {
                 oTopo.Api.selectLinksById(oTopo, ["link0", "link1", "link2", "gLink1_2"]);
@@ -703,6 +713,9 @@
             $("#setAreaSelect3").click(function () {
                 oTopo.Api.setConfig(oTopo, {areaSelect: "all"});
             });
+            $("#exportPicture").click(function () {
+                oTopo.Api.exportPicture(oTopo, "topo.png");
+            });
             $("#circleTest").click(function () {
                 var oGroup = new Konva.Group({
                     id: "xxxxssssdddd",
@@ -725,8 +738,8 @@
                     console.log("sssfff");
                 });
 
-                oTopo.ins.layerNode.add(oGroup);
-                oTopo.ins.layerNode.batchDraw();
+                oTopo.Layer.getNodeLayer(oTopo).add(oGroup);
+                oGroup.getLayer().batchDraw();
             });
             $("#rectTest").click(function () {
                 var oRect = oTopo.ins.stage.findOne("#rect");
@@ -744,10 +757,25 @@
                         strokeWidth: 5
                     });
 
-                    oTopo.ins.layerNode.add(oRect);
-                    oTopo.ins.layerNode.batchDraw();
+                    oTopo.Layer.getNodeLayer(oTopo).add(oRect);
+                    oRect.getLayer().batchDraw();
                 }
 
+            });
+            $("#fullScreen").click(function () {
+                var oElement = document.getElementById("id1");
+                oElement.style.position = "fixed";
+                oElement.style.top = 0;
+                oElement.style.right = 0;
+                oElement.style.width = "100%";
+                oElement.style.height = "100%";
+                oTopo.Api.resize(oTopo);
+            });
+            $("#existCreateNodeModel").click(function () {
+                oTopo.Api.existCreateNodeModel(oTopo);
+            });
+            $("#existCreateLinkModel").click(function () {
+                oTopo.Api.existCreateLinkModel(oTopo);
             });
             //endregion
         });
@@ -778,11 +806,15 @@
     <button id="setAreaSelect1">设置框选网元</button>
     <button id="setAreaSelect2">设置框选链路</button>
     <button id="setAreaSelect3">设置框选网元和链路</button>
+    <button id="exportPicture">exportPicture</button>
     <button id="circleTest">circleTest</button>
     <button id="rectTest">rectTest</button>
+    <button id="fullScreen">fullScreen</button>
+    <button id="existCreateNodeModel">existCreateNodeModel</button>
+    <button id="existCreateLinkModel">existCreateLinkModel</button>
 </div>
 <div>
-    <div id="id1" style="width:1200px; height:600px; z-index: 1000; position: relative;"></div>
+    <div id="id1" style="width:100%; height:600px; z-index: 1000; position: relative;"></div>
     <div style="width: 600px; height: 600px; border-right: 1px solid red; z-index: 999; position:absolute; top: 40px; pointer-events: none;"></div>
     <div style="width: 1200px; height: 300px; border-bottom: 1px solid red; z-index: 999; position:absolute; top: 40px; pointer-events: none;"></div>
 </div>
