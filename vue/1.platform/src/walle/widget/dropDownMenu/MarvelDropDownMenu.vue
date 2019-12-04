@@ -120,9 +120,7 @@
         var iSubMenuW = parseInt($("#" + this.dropDownMenuId + " .userInfoSubMenu").outerWidth());
 
         this.subMenuLeft = -(iSubMenuW-iUserInfoW)/2;
-        console.log(iUserInfoW);
-        console.log(iSubMenuW);
-        console.log(this.subMenuLeft);
+
       },
       clickSubMenu: function (strLabel) {
         this.showSubMenu = false;

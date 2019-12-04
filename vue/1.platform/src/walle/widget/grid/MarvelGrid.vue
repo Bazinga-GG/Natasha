@@ -212,8 +212,8 @@
         for (var i = 0; i < this.rows.length; i++) {
           this.rows[i][0].isCheck = this.checkTitleItem;
         }
-        console.log(this.checkTitleItem);
         this.callback4OnTitleCheckOrUncheck(this.checkTitleItem);
+
       },
       onRowCheck: function (oRow) {
         var j = 0;

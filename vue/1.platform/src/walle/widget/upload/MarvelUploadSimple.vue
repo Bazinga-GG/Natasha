@@ -6,7 +6,7 @@
                    :icon="btnIcon"
                    :isWarn="false"
                    v-on:onClick="onClickBtn"></marvel-button>
-    <input v-show="false" type="file" :multiple="isMulti? 'multiple' : undefined" @change="onSelectFile"/>
+    <input v-show="false" type="file" :multiple="isMulti? 'multiple' : undefined" @change="onSelectFile" :accept="acceptFormat"/>
   </div>
 </template>
 
@@ -44,15 +44,45 @@
         type: Boolean,
         default: false,
         required: false,
-      }
+      },
+      accept: {
+        type: Array,
+        default: function () {
+          return [];
+        },
+        required: false,
+      },
     },
     data() {
       return {
         id4Btn: StringUtilsEx.uuid(),
+        acceptFormat:""
       }
+    },
+    mounted: function () {
+      //#region init
+
+      this._initEx();
+
+      //#endregion
     },
     methods: {
       //#region inner
+
+      //#region lifeCycle
+
+      _initEx: function(){
+        this.acceptFormat = "";
+        for(var i = 0; i < this.accept.length; i++){
+          if(i == 0){
+            this.acceptFormat =this.accept[i];
+          }else{
+            this.acceptFormat = this.acceptFormat + "," + this.accept[i];
+          }
+        }
+      },
+
+      //#endregion
 
       onClickBtn() {
         this._clearFileVaule();
@@ -95,7 +125,15 @@
       }
 
       //#endregion
-    }
+    },
+    watch: {
+      accept: {
+        handler: function () {
+          this._initEx();
+        },
+        deep: true
+      }
+    },
   }
 </script>
 

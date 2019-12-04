@@ -1,6 +1,6 @@
 <template>
   <div class="uploadWrapper" v-bind:class="[status, size]">
-    <input class="uploadFile" type="file" v-on:change="onSelectFileBtnClick">
+    <input class="uploadFile" type="file" v-on:change="onSelectFileBtnClick" :accept="acceptFormat">
     <input class="uploadFileName" readonly="readonly" disabled type="text"
            :placeholder="placeHolder" :value="fileName">
     <span class="uploadFileSelectBtn">...</span>
@@ -37,15 +37,45 @@
         default: "",
         required: false,
       },
+      accept: {
+        type: Array,
+        default: function () {
+          return [];
+        },
+        required: false,
+      },
     },
     data: function () {
       return {
         file: undefined,
-        fileName: ""
+        fileName: "",
+        acceptFormat:""
       }
+    },
+    mounted: function () {
+      //#region init
+
+      this._initEx();
+
+      //#endregion
     },
     methods: {
       //#region inner
+
+      //#region lifeCycle
+
+      _initEx: function(){
+        this.acceptFormat = "";
+        for(var i = 0; i < this.accept.length; i++){
+          if(i == 0){
+            this.acceptFormat =this.accept[i];
+          }else{
+            this.acceptFormat = this.acceptFormat + "," + this.accept[i];
+          }
+        }
+      },
+
+      //#endregion
 
       onSelectFileBtnClick: function (evt) {
         this.file = evt.target.files[0];
@@ -72,7 +102,15 @@
       }
 
       //#endregion
-    }
+    },
+    watch: {
+      accept: {
+        handler: function () {
+          this._initEx();
+        },
+        deep: true
+      }
+    },
   }
 </script>
 

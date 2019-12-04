@@ -102,51 +102,41 @@
         var eventOptions = {
           //region Stage
           callbackOnZoom: function (e) {
-            console.log("callbackOnZoom");
             self._onZoom(e);
           },
           callbackOnClick: function (e) {
-            console.log("callbackOnClick");
             self._onClick(e);
           },
           callbackOnContextmenu: function (e) {
-            console.log("callbackOnContextmenu");
             self._onContextMenu(e);
           },
           //endregion
           //region node
           callbackOnNodeDblClick: function (e) {
-            console.log("callbackOnNodeDblClick");
             self._onNodeDblClick(e);
           },
           callbackOnNodeDrag: function (e) {
-            console.log("callbackOnNodeDrag");
             self._onNodeDrag(e);
           },
           callbackOnNodeClick: function (e) {
-            console.log("callbackOnNodeClick");
             self._onNodeClick(e);
           },
           callbackOnNodeContextMenu: function (e) {
-            console.log("callbackOnNodeContextMenu");
             self._onNodeContextMenu(e);
           },
           //endregion
           //region nodeGroup
           callbackOnNodeGroupClick: function (e) {
-            console.log("callbackOnNodeGroupClick");
             self._onNodeGroupClick(e);
           },
           //endregion
           //region link
           callbackOnLinkClick: function (e) {
-            console.log("callbackOnLinkClick");
             self._onLinkClick(e);
           },
           //endregion
           //region basicShape
           callbackOnCircleDblclick: function (e) {
-            console.log("callbackOnCircleDblclick");
             self._onCircleDblclick(e);
           }
           //endregion

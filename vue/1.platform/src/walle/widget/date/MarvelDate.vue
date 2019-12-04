@@ -109,7 +109,6 @@
 
       onInputClick: function () {
         this.show = !this.show;
-        console.log(this.show);
       },
       onYearClick: function (strYear) {
         this.ySelect = strYear;
