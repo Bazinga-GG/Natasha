@@ -7,9 +7,13 @@
 
   require('jquery/dist/jquery.min.js');
   require('svg.js/dist/svg.min.js');
-  require('save-svg-as-png/saveSvgAsPng.js');
+  var saveAsPngDefine = require('save-svg-as-png/saveSvgAsPng.js');
   require('html2canvas/dist/html2canvas.min.js');
   require('natasha-devpanelex/js/MarvelRackCabinet.js');
+
+  for(var key in saveAsPngDefine){
+    window[key] = saveAsPngDefine[key];
+  }
 
   /**
    *  MarvelDevPanelEx widget description
