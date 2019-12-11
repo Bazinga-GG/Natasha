@@ -9,6 +9,7 @@
   import 'ace-builds/webpack-resolver'
   import 'ace-builds/src-noconflict/theme-dracula'
   import 'ace-builds/src-noconflict/mode-javascript'
+  import 'ace-builds/src-noconflict/ext-language_tools'
   import StringUtilsEx from '../../component/str'
 
   /**
@@ -92,6 +93,13 @@
 
         //清除中线
         this.oEditor.setShowPrintMargin(false);
+
+        //启用提示菜单
+        this.oEditor.setOption({
+          enableBasicAutocompletion: true,
+          enableSnippets: true,
+          enableLiveAutocompletion: true
+        });
 
         //setCode
         if (this.codeIn !== undefined && this.lan !== undefined) {
