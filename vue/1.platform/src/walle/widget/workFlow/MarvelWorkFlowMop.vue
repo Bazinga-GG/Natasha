@@ -326,15 +326,18 @@
 
       //#endregion
       //#region 3rd
-      
+
       scrollToBottom: function () {
         this.$refs[this.gridTreeRef].scrollToBottom();
+      },
+      scrollLogViewToBottom: function () {
+        this.$refs[this.logRef][0].anchorToBottom();
       },
       setRowActive: function (oRow) {
         this.$refs[this.gridTreeRef].setRowActive(oRow);
         this._callback4OnClickRow(oRow);
       }
-      
+
       //#endregion
     },
     watch: {
@@ -405,7 +408,6 @@
   }
 
   .logTabCont {
-    background-color: #f0f0f0;
   }
 
 </style>

@@ -22,7 +22,6 @@
       </div>
     </div>
     <div :id="logSessionWrapperId" class="logSessionWrapper">
-      <br>
       <div class="logSession" :class="{activeLog: logItem.logId == activeLogId}" v-for="logItem in logItems">
         <span class="logText"
               :id="logItem.logId"
@@ -131,10 +130,15 @@
         var oParentDiv = document.getElementById(this.logSessionWrapperId);
         if(anchor){
           var iOffsetTop =anchor.offsetTop;
-          oParentDiv.scrollTop = iOffsetTop - 20; //设置距顶部20的间隙
+          oParentDiv.scrollTop = iOffsetTop - 8; //设置距顶部8的间隙
         }else{
           console.log("can not find " + strAnchorId);
         }
+      },
+
+      anchorToBottom: function () {
+        var oParentDiv = document.getElementById(this.logSessionWrapperId);
+        oParentDiv.scrollTop = oParentDiv.scrollHeight;
       }
 
       //#endregion
@@ -176,18 +180,11 @@
   .filterWrapper{
     overflow: hidden;
     position: absolute;
-    top: 6px;
-    right: 10px;
-    opacity: 0.5;
+    top: 3px;
+    right: 0;
     white-space: nowrap;
     padding: 4px 0 0 0 ;
     border-radius: 2px;
-  }
-
-  .filterWrapper:hover{
-    opacity: 1;
-    background-color: #fff;
-    box-shadow: 0 0 3px rgba(0,0,0,0.15);
   }
 
   .filterArea{
@@ -202,10 +199,13 @@
 
   .logSessionWrapper{
     width: 100%;
-    height: 100%;
+    height: calc(100% - 34px);
     overflow: auto;
     padding: 6px;
     box-sizing: border-box;
+    position: relative;
+    top: 34px;
+    background-color: #f0f0f0;
   }
 
   .logSession{
@@ -215,15 +215,16 @@
   }
 
   .activeLog{
-    border: 1px solid rgba(51,153,255,0.6);
     box-sizing: border-box;
-    background-color: rgba(51,153,255,0.06);
+    background-color: #d1e8ff;
   }
 
   .logText{
     color: #333;
     font-size: 12px;
     line-height: 14px;
+    position: relative;
+    bottom: 2px;
   }
 
   .noticeLog{

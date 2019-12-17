@@ -95,7 +95,7 @@
         this.oEditor.setShowPrintMargin(false);
 
         //启用提示菜单
-        this.oEditor.setOption({
+        this.oEditor.setOptions({
           enableBasicAutocompletion: true,
           enableSnippets: true,
           enableLiveAutocompletion: true
