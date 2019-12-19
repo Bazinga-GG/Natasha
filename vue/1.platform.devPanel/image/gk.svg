@@ -375,27 +375,27 @@ JwFgsPycMK6aKv8AATSDhZxb6lQLBYLBYf8A2pv/2Q==" transform="matrix(0.48 0 0 0.48 11
 </g>
 <g id="3" style="cursor:pointer">
 	<rect x="11.955" y="24.12" fill="#D3D3D3" width="130.948" height="33.366"/>
-	<text transform="matrix(1 0 0 1 53.9546 45.8114)" font-family="'AdobeSongStd-Light-GBpc-EUC-H'" font-size="16">电动切割头</text>
+	<text transform="matrix(1 0 0 1 53.9546 45.8114)" font-family="'AdobeSongStd-Light-GBpc-EUC-H'" font-size="16">1</text>
 </g>
 <g id="2" style="cursor:pointer">
 	<rect x="166.722" y="24.12" fill="#D3D3D3" width="117.092" height="33.366"/>
-	<text transform="matrix(1 0 0 1 208.7215 45.8114)" font-family="'AdobeSongStd-Light-GBpc-EUC-H'" font-size="16">电容调高</text>
+	<text transform="matrix(1 0 0 1 208.7215 45.8114)" font-family="'AdobeSongStd-Light-GBpc-EUC-H'" font-size="16">2</text>
 </g>
 <g id="4" style="cursor:pointer">
 	<rect x="328.227" y="24.12" fill="#D3D3D3" width="117.092" height="33.366"/>
-	<text transform="matrix(1 0 0 1 370.2267 45.8114)" font-family="'AdobeSongStd-Light-GBpc-EUC-H'" font-size="16">激光器</text>
+	<text transform="matrix(1 0 0 1 370.2267 45.8114)" font-family="'AdobeSongStd-Light-GBpc-EUC-H'" font-size="16">3</text>
 </g>
 <g id="1" style="cursor:pointer">
 	<rect x="488.924" y="24.12" fill="#D3D3D3" width="117.092" height="33.366"/>
-	<text transform="matrix(1 0 0 1 530.9238 45.8114)" font-family="'AdobeSongStd-Light-GBpc-EUC-H'" font-size="16">切割工艺</text>
+	<text transform="matrix(1 0 0 1 530.9238 45.8114)" font-family="'AdobeSongStd-Light-GBpc-EUC-H'" font-size="16">4</text>
 </g>
 <g id="0" style="cursor:pointer">
 	<rect x="47.044" y="295.123" fill="#D3D3D3" width="117.092" height="33.366"/>
-	<text transform="matrix(1 0 0 1 89.0435 316.8142)" font-family="'AdobeSongStd-Light-GBpc-EUC-H'" font-size="16">切割整机</text>
+	<text transform="matrix(1 0 0 1 89.0435 316.8142)" font-family="'AdobeSongStd-Light-GBpc-EUC-H'" font-size="16">5</text>
 </g>
 <g id="5" style="cursor:pointer">
 	<rect x="401.244" y="295.123" fill="#D3D3D3" width="117.092" height="33.366"/>
-	<text transform="matrix(1 0 0 1 443.2442 316.8142)" font-family="'AdobeSongStd-Light-GBpc-EUC-H'" font-size="16">水冷机组</text>
+	<text transform="matrix(1 0 0 1 443.2442 316.8142)" font-family="'AdobeSongStd-Light-GBpc-EUC-H'" font-size="16">6</text>
 </g>
 <g id="l3Warn">
 	<circle fill-rule="evenodd" clip-rule="evenodd" fill="#1C873B" cx="32.955" cy="40.803" r="11"/>

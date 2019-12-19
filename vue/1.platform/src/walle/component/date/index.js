@@ -2,20 +2,20 @@ import moment from 'moment'
 import 'moment/locale/zh-cn'
 moment.locale('zh-cn');
 
-Date.prototype.format = function (fmt) {
+Date.prototype.format = function (strTimeToFormat) {
   var o = {
-    "M+": this.getMonth() + 1, //月份
-    "d+": this.getDate(), //日
-    "h+": this.getHours(), //小时
-    "m+": this.getMinutes(), //分
-    "s+": this.getSeconds(), //秒
-    "q+": Math.floor((this.getMonth() + 3) / 3), //季度
-    "S": this.getMilliseconds() //毫秒
+    "M+": this.getMonth() + 1, /*month*/
+    "d+": this.getDate(), /*day*/
+    "h+": this.getHours(), /*hour*/
+    "m+": this.getMinutes(), /*min*/
+    "s+": this.getSeconds(), /*second*/
+    "q+": Math.floor((this.getMonth() + 3) / 3), /*quarter*/
+    "S": this.getMilliseconds() /*ms*/
   };
-  if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+  if (/(y+)/.test(strTimeToFormat)) strTimeToFormat = strTimeToFormat.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
   for (var k in o)
-    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-  return fmt;
+    if (new RegExp("(" + k + ")").test(strTimeToFormat)) strTimeToFormat = strTimeToFormat.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+  return strTimeToFormat;
 };
 
 export default {

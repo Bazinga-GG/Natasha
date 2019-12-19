@@ -1,89 +1,90 @@
 export default {
   getBrowserInfo: function () {//检测浏览器内核--返回的是两个key，name：浏览器内核的名称---version：浏览器的版本号
-    var _broswer = {};
-    var sUserAgent = navigator.userAgent;
-    var isOpera = sUserAgent.indexOf("Opera") > -1;
-    if (isOpera) {
-      //首先检测Opera是否进行了伪装
+    var oBroswer = {};
+    var strUserAgent = navigator.userAgent;
+    var bIsOpera = strUserAgent.indexOf("Opera") > -1;
+    if (bIsOpera) {
+      //先检测Opera浏览器是否进行了伪装
       if (navigator.appName == 'Opera') {
-        //如果没有进行伪装，则直接后去版本号
-        _broswer.version = parseFloat(navigator.appVersion);
+        //如果浏览器没有进行伪装，那么直接获取版本号
+        oBroswer.version = parseFloat(navigator.appVersion);
       } else {
-        var reOperaVersion = new RegExp("Opera (\\d+.\\d+)");
-        //使用正则表达式的test方法测试并将版本号保存在RegExp.$1中
-        reOperaVersion.test(sUserAgent);
-        _broswer.version = parseFloat(RegExp['$1']);
+        var regOperaVersion = new RegExp("Opera (\\d+.\\d+)");
+        //正则匹配，并将版本号保存在RegExp.$1中
+        regOperaVersion.test(strUserAgent);
+        oBroswer.version = parseFloat(RegExp['$1']);
       }
-      _broswer.opera = true;
-      _broswer.name = 'opera';
+      oBroswer.opera = true;
+      oBroswer.name = 'opera';
     }
-    var isChrome = sUserAgent.indexOf("Chrome") > -1;
-    if (isChrome) {
-      var reChorme = new RegExp("Chrome/(\\d+\\.\\d+(?:\\.\\d+\\.\\d+))?");
-      reChorme.test(sUserAgent);
-      _broswer.version = parseFloat(RegExp['$1']);
-      _broswer.chrome = true;
-      _broswer.name = 'chrome';
+    var bIsChrome = strUserAgent.indexOf("Chrome") > -1;
+    if (bIsChrome) {
+      var regChorme = new RegExp("Chrome/(\\d+\\.\\d+(?:\\.\\d+\\.\\d+))?");
+      regChorme.test(strUserAgent);
+      oBroswer.version = parseFloat(RegExp['$1']);
+      oBroswer.chrome = true;
+      oBroswer.name = 'chrome';
     }
-    //排除Chrome信息，因为在Chrome的user-agent字符串中会出现Konqueror/Safari的关键字
-    var isKHTML = (sUserAgent.indexOf("KHTML") > -1
-      || sUserAgent.indexOf("Konqueror") > -1 || sUserAgent
+    //在Chrome的user-agent字符串中会出现Konqueror/Safari的关键字，排除Chrome信息
+    var isKHTML = (strUserAgent.indexOf("KHTML") > -1
+      || strUserAgent.indexOf("Konqueror") > -1 || strUserAgent
         .indexOf("AppleWebKit") > -1)
-      && !isChrome;
-    if (isKHTML) {//判断是否基于KHTML，如果时的话在继续判断属于何种KHTML浏览器
-      var isSafari = sUserAgent.indexOf("AppleWebKit") > -1;
-      var isKonq = sUserAgent.indexOf("Konqueror") > -1;
+      && !bIsChrome;
+    if (isKHTML) {
+      //判断是否基于KHTML，如果时的话在继续判断属于何种KHTML浏览器
+      var isSafari = strUserAgent.indexOf("AppleWebKit") > -1;
+      var isKonq = strUserAgent.indexOf("Konqueror") > -1;
       if (isSafari) {
         var reAppleWebKit = new RegExp("Version/(\\d+(?:\\.\\d*)?)");
-        reAppleWebKit.test(sUserAgent);
+        reAppleWebKit.test(strUserAgent);
         var fAppleWebKitVersion = parseFloat(RegExp["$1"]);
-        _broswer.version = parseFloat(RegExp['$1']);
-        _broswer.safari = true;
-        _broswer.name = 'safari';
+        oBroswer.version = parseFloat(RegExp['$1']);
+        oBroswer.safari = true;
+        oBroswer.name = 'safari';
       } else if (isKonq) {
         var reKong = new RegExp(
           "Konqueror/(\\d+(?:\\.\\d+(?\\.\\d)?)?)");
-        reKong.test(sUserAgent);
-        _broswer.version = parseFloat(RegExp['$1']);
-        _broswer.konqueror = true;
-        _broswer.name = 'konqueror';
+        reKong.test(strUserAgent);
+        oBroswer.version = parseFloat(RegExp['$1']);
+        oBroswer.konqueror = true;
+        oBroswer.name = 'konqueror';
       }
     }
-    // !isOpera 避免是由Opera伪装成的IE
-    var isIE = sUserAgent.indexOf("compatible") > -1
-      && sUserAgent.indexOf("MSIE") > -1 && !isOpera;
+    // !bIsOpera 避免是由Opera伪装成的IE
+    var isIE = strUserAgent.indexOf("compatible") > -1
+      && strUserAgent.indexOf("MSIE") > -1 && !bIsOpera;
     if (isIE) {
       var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
-      reIE.test(sUserAgent);
-      _broswer.version = parseFloat(RegExp['$1']);
-      _broswer.msie = true;
-      _broswer.name = 'msie';
+      reIE.test(strUserAgent);
+      oBroswer.version = parseFloat(RegExp['$1']);
+      oBroswer.msie = true;
+      oBroswer.name = 'msie';
     }
-    var isIE11 = sUserAgent.indexOf('Trident') > -1 && sUserAgent.indexOf("rv:11.0") > -1;
+    var isIE11 = strUserAgent.indexOf('Trident') > -1 && strUserAgent.indexOf("rv:11.0") > -1;
     if (isIE11) {
-      _broswer.version = 11;
-      _broswer.msie = true;
-      _broswer.name = 'msie';
+      oBroswer.version = 11;
+      oBroswer.msie = true;
+      oBroswer.name = 'msie';
     }
-    var isEdge = sUserAgent.indexOf("Edge") > -1 && !isIE; //判断是否IE的Edge浏览器
+    var isEdge = strUserAgent.indexOf("Edge") > -1 && !isIE; //判断是否IE的Edge浏览器
     if(isEdge){
       var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
-      reIE.test(sUserAgent);
-      _broswer.version = parseFloat(RegExp['$1']);
-      _broswer.msie = true;
-      _broswer.name = 'edge';
+      reIE.test(strUserAgent);
+      oBroswer.version = parseFloat(RegExp['$1']);
+      oBroswer.msie = true;
+      oBroswer.name = 'edge';
     }
 
 
     // 排除Chrome 及 Konqueror/Safari 的伪装
-    var isMoz = sUserAgent.indexOf("Gecko") > -1 && !isChrome && !isKHTML && !isIE && !isIE11 && !isEdge;
+    var isMoz = strUserAgent.indexOf("Gecko") > -1 && !bIsChrome && !isKHTML && !isIE && !isIE11 && !isEdge;
     if (isMoz) {
       var reMoz = new RegExp("rv:(\\d+\\.\\d+(?:\\.\\d+)?)");
-      reMoz.test(sUserAgent);
-      _broswer.version = parseFloat(RegExp['$1']);
-      _broswer.mozilla = true;
-      _broswer.name = 'mozilla';
+      reMoz.test(strUserAgent);
+      oBroswer.version = parseFloat(RegExp['$1']);
+      oBroswer.mozilla = true;
+      oBroswer.name = 'mozilla';
     }
-    return _broswer;
+    return oBroswer;
   },
 }

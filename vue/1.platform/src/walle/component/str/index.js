@@ -17,45 +17,45 @@ export default {
     return strRes;
   },
   uuid: function () {
-    var s = [];
+    var arrStr = [];
     var hexDigits = "0123456789abcdef";
     for (var i = 0; i < 36; i++) {
-      s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+      arrStr[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
     }
-    s[14] = "4";  // bits 12-15 of the time_hi_and_version field to 0010
-    s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);  // bits 6-7 of the clock_seq_hi_and_reserved to 01
-    s[8] = s[13] = s[18] = s[23] = "-";
+    arrStr[14] = "4";  // bits 12-15 of the time_hi_and_version field to 0010
+    arrStr[19] = hexDigits.substr((arrStr[19] & 0x3) | 0x8, 1);  // bits 6-7 of the clock_seq_hi_and_reserved to 01
+    arrStr[8] = arrStr[13] = arrStr[18] = arrStr[23] = "-";
 
-    var uuid = s.join("");
+    var uuid = arrStr.join("");
     return uuid;
   },
-  uuidEx: function (len, radix) {
-    var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
-    var uuid = [], i;
-    radix = radix || chars.length;
+  uuidEx: function (iLength, iRadix) {
+    var strChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+    var arrUuid = [], i;
+    iRadix = iRadix || strChars.length;
 
-    if (len) {
+    if (iLength) {
       // Compact form
-      for (i = 0; i < len; i++) uuid[i] = chars[0 | Math.random() * radix];
+      for (i = 0; i < iLength; i++) arrUuid[i] = strChars[0 | Math.random() * iRadix];
     } else {
       // rfc4122, version 4 form
       var r;
 
       // rfc4122 requires these characters
-      uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
-      uuid[14] = '4';
+      arrUuid[8] = arrUuid[13] = arrUuid[18] = arrUuid[23] = '-';
+      arrUuid[14] = '4';
 
       // Fill in random data.  At i==19 set the high bits of clock sequence as
       // per rfc4122, sec. 4.1.5
       for (i = 0; i < 36; i++) {
-        if (!uuid[i]) {
+        if (!arrUuid[i]) {
           r = 0 | Math.random() * 16;
-          uuid[i] = chars[(i == 19) ? (r & 0x3) | 0x8 : r];
+          arrUuid[i] = strChars[(i == 19) ? (r & 0x3) | 0x8 : r];
         }
       }
     }
 
-    return uuid.join('');
+    return arrUuid.join('');
   },
   contains: function (strSubStr, strWhole) {
     if (undefined == strWhole) {
@@ -64,26 +64,26 @@ export default {
     return strWhole.indexOf(strSubStr) >= 0;
   },
   format: function (strMsg) {
-    if (arguments.length == 0) {
-      return "";
-    }
+    if (arguments.length == 0) {return "";}
 
-    var str = arguments[0];
+    var strToFormat = arguments[0];
     for (var i = 1; i < arguments.length; i++) {
       var re = new RegExp('\\{' + (i - 1) + '\\}', 'gm');
-      str = str.replace(re, arguments[i]);
+      strToFormat = strToFormat.replace(re, arguments[i]);
     }
-    return str;
+    return strToFormat;
   },
-  getLength: function (str) {
+  getLength: function (strMsg) {
     //获得字符串实际长度，中文2，英文1
-    var realLength = 0, len = str.length, charCode = -1;
-    for (var i = 0; i < len; i++) {
-      charCode = str.charCodeAt(i);
-      if (charCode >= 0 && charCode <= 128) realLength += 1;
-      else realLength += 2;
+    var iRealLength = 0;
+    var iLen = strMsg.length;
+    var cCode = -1;
+    for (var i = 0; i < iLen; i++) {
+      cCode = strMsg.charCodeAt(i);
+      if (cCode >= 0 && cCode <= 128) iRealLength += 1;
+      else iRealLength += 2;
     }
-    return realLength;
+    return iRealLength;
   },
   htmlEscape: function (str) {
     return String(str).replace(/&/g, "&amp;")

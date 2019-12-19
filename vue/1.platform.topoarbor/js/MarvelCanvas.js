@@ -123,41 +123,26 @@
         };
 
         this.drawNodeLabel = function(node, pt ){
-
-            // node: {mass:#, p:{x,y}, name:"", data:{}}
-            // pt:   {x:#, y:#}  node position in screen coords
-
-
-            // determine the box size and round off the coords if we'll be
-            // drawing a text label (awful alignment jitter otherwise...)
-            var w = self.ctx.measureText(node.data.label || "").width + 6;
-            var label = node.data.label;
-            if (!(label || "").match(/^[ \t]*$/)) {
-                pt.x = Math.floor(pt.x)
-                pt.y = Math.floor(pt.y)
+            var iWidth = self.ctx.measureText(node.data.label || "").width + 6;
+            var strLabel = node.data.label;
+            if (!(strLabel || "").match(/^[ \t]*$/)) {
+                pt.x = Math.floor(pt.x);
+                pt.y = Math.floor(pt.y);
             } else {
-                label = null
+              strLabel = null
             }
 
-            // clear any edges below the text label
-            // ctx.fillStyle = 'rgba(255,255,255,.6)'
-            // ctx.fillRect(pt.x-w/2, pt.y-7, w,14)
-
-
-            self.clearRect(pt.x - w / 2, pt.y - 7, w, 14);
+            self.clearRect(pt.x - iWidth / 2, pt.y - 7, iWidth, 14);
 
 
             // draw the text
-            if (label) {
+            if (strLabel) {
                 self.ctx.font = "bold 11px Arial";
                 self.ctx.textAlign = "center";
 
-                // if (node.data.region) ctx.fillStyle = palette[node.data.region]
-                // else ctx.fillStyle = "#888888"
                 self.ctx.fillStyle = "#888888";
 
-                // ctx.fillText(label||"", pt.x, pt.y+4)
-                self.ctx.fillText(label || "", pt.x, pt.y + 4);
+                self.ctx.fillText(strLabel || "", pt.x, pt.y + 4);
             }
         };
 

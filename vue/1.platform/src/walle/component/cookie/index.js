@@ -15,10 +15,10 @@ export default {
   },
 
   delCookie: function (arrKeys) {
-    var exp = new Date();
-    exp.setTime(exp.getTime() - 1);
-    var cval = this.getCookie(name);
-    if (cval != null)
-      document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
+    var oDate = new Date();
+    oDate.setTime(oDate.getTime() - 1);
+    var strCookieValue = this.getCookie(name);
+    if (strCookieValue != null)
+      document.cookie = name + "=" + strCookieValue + ";expires=" + oDate.toGMTString();
   },
 }

@@ -103,20 +103,20 @@
           //endregion
           //region geo
           geo: {
-            map: this.chartData.geoType,
+            roam: true,
             label: {
               emphasis: {
                 show: false
               }
             },
-            roam: true,
+            map: this.chartData.geoType,
             itemStyle: {
-              normal: {
-                areaColor: '#323c48',
-                borderColor: '#111'
-              },
               emphasis: {
                 areaColor: '#2a333d'
+              },
+              normal: {
+                borderColor: '#111',
+                areaColor: '#323c48'
               }
             }
           },
@@ -128,17 +128,17 @@
               type: 'scatter',
               coordinateSystem: 'geo',
               data: this.chartData.data,
-              symbolSize: function (val) {
-                return val[2] / 10;
+              symbolSize: function (value) {
+                return value[2] / 10;
               },
               label: {
-                normal: {
-                  formatter: '{b}',
-                  position: 'right',
-                  show: false
-                },
                 emphasis: {
                   show: true
+                },
+                normal: {
+                  position: 'right',
+                  show: false,
+                  formatter: '{b}'
                 }
               },
               itemStyle: {

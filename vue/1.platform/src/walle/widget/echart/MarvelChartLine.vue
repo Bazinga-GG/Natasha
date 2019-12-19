@@ -86,32 +86,28 @@
           },
           tooltip: {
             trigger: 'axis',
+            axisPointer: {
+              animation: false
+            },
             formatter: function (params) {
               var param = params[0];
               return param.name + ' : ' + param.value[1];
-            },
-            axisPointer: {
-              animation: false
-            }
-          },
-          xAxis: {
-            type: 'time',
-            splitLine: {
-              show: false
             }
           },
           yAxis: {
             type: 'value',
-            boundaryGap: [0, '100%'],
-            splitLine: {
-              show: false
-            }
+            splitLine: {show: false},
+            boundaryGap: [0, '100%']
+          },
+          xAxis: {
+            splitLine: {show: false},
+            type: 'time'
           },
           series: [{
-            name: 'lineData',
             type: 'line',
-            showSymbol: false,
+            name: 'lineData',
             hoverAnimation: false,
+            showSymbol: false,
             data: this.chartData.data
           }]
         };

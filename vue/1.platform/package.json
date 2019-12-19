@@ -1,6 +1,6 @@
 {
   "name": "natasha-vue",
-  "version": "1.1.10",
+  "version": "1.1.12",
   "description": "natasha-vue",
   "author": "Author",
   "private": false,
@@ -24,7 +24,7 @@
     "jsdifflib": "^1.1.0",
     "ace-builds": "1.4.1",
 
-    "natasha-devpanel": "1.1.0",
+    "natasha-devpanel": "1.1.1",
     "natasha-devpanelex": "1.1.0",
     "natasha-gis": "1.1.0",
     "natasha-icon": "1.1.0",
