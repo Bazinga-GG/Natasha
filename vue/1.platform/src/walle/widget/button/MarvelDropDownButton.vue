@@ -1,5 +1,5 @@
 <template>
-  <div class="dropdownBtnWrapper">
+  <div class="dropdownBtnWrapper"  v-bind:class="[size]">
     <div class="dropdownBtn"
          v-bind:class="{ disable, dropdownBtnShowBorder: show }"
          v-bind:style="{ width: width }"
@@ -62,6 +62,11 @@
       showSelectIcon: {
         type: Boolean,
         default: true,
+        required: false,
+      },
+      size: {
+        type: String,
+        default: "",
         required: false,
       },
     },
@@ -424,6 +429,57 @@
     border: none !important;
     height: 0;
     overflow: hidden !important;
+  }
+
+
+
+  .mini {
+    width: 100%;
+    height: 22px;
+  }
+
+  .mini .dropdownBtn {
+    font-size: 14px;
+  }
+
+  .mini .dropdownBtn .label {
+    height: 20px;
+    padding: 0 25px 0 10px;
+    border: none;
+  }
+
+  .mini .dropdownBtn .label .icon {
+    color: #3399ff;
+    font-size: 14px;
+    line-height: 20px;
+    margin-right: 5px;
+  }
+
+  .mini .dropdownBtn .label .name {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .mini .dropdownBtn .label .expandAndFolderIcon {
+    font-size: 12px;
+    line-height: 20px;
+  }
+
+  .mini .dropdownBtn .options .optionItem {
+    height: 22px;
+    padding: 0 20px 0 10px;
+  }
+
+  .mini .dropdownBtn .options .optionItem .icon {
+    font-size: 14px;
+    line-height: 22px;
+    margin-right: 5px;
+  }
+
+  .mini .dropdownBtn .options .optionItem .name {
+    font-size: 14px;
+    line-height: 22px;
+    margin-right: 10px;
   }
 
   ::-webkit-scrollbar {
