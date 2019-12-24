@@ -439,7 +439,7 @@
   }
 
   .mini .dropdownBtn {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .mini .dropdownBtn .label {
@@ -450,13 +450,13 @@
 
   .mini .dropdownBtn .label .icon {
     color: #3399ff;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 20px;
     margin-right: 5px;
   }
 
   .mini .dropdownBtn .label .name {
-    font-size: 14px;
+    font-size: 12px;
     line-height: 20px;
   }
 
@@ -471,13 +471,13 @@
   }
 
   .mini .dropdownBtn .options .optionItem .icon {
-    font-size: 14px;
+    font-size: 12px;
     line-height: 22px;
     margin-right: 5px;
   }
 
   .mini .dropdownBtn .options .optionItem .name {
-    font-size: 14px;
+    font-size: 12px;
     line-height: 22px;
     margin-right: 10px;
   }
