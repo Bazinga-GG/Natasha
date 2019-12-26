@@ -88,6 +88,11 @@
         this.checkItem = bIsCheck;
         this.isDisable = bIsDisable;
       },
+
+      setDisableStatus: function (bIsDisable) {
+        this.isDisable = bIsDisable;
+      },
+
       getCheckItem: function () {
         return this.checkItem;
       },
