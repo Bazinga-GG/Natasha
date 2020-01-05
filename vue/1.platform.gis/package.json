@@ -10,14 +10,12 @@
     "js"
   ],
   "dependencies": {
-    "leaflet.heat": "0.2.0",
-    "@skyraptor/leaflet.pm": "2.1.1",
-    "leaflet-polylinedecorator": "1.4.1",
-    "leaflet.polylinemeasure": "2.0.0",
-    "leaflet-easyprint": "2.1.8",
+    "@skyraptor/leaflet.pm": "2.3.0",
+    "leaflet-polylinedecorator": "1.6.0",
+    "leaflet-easyprint": "2.1.9",
     "leaflet-deepzoom": "2.0.0",
-    "leaflet": "1.2.0",
-    "keyboardjs": "2.3.3",
+    "leaflet": "1.5.1",
+    "keyboardjs": "2.5.1",
     "jquery": "3.4.1"
   },
   "engines": {

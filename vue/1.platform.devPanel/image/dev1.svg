@@ -3,7 +3,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%"
 	 height="100%" viewBox="0 0 730 660" enable-background="new 0 0 730 660" xml:space="preserve">
-<g id="0">
+<g id="module0">
 	<rect x="0" fill="#DDDDDD" stroke="#000000" stroke-miterlimit="10" width="730" height="660"/>
 	<rect x="0" y="71.699" fill="#DDDDDD" stroke="#000000" stroke-miterlimit="10" width="365" height="482.646"/>
 	<rect x="20" y="143.113" fill="#9897A5" width="325" height="127.921"/>
@@ -33,115 +33,115 @@
 	<rect x="62.511" y="145.113" fill="#DDDDDD" width="280.489" height="123.921"/>
 	<text transform="matrix(1 0 0 1 37 214.6093)" fill="#FFFFFF" font-family="'PingFangHK-Thin-83pv-RKSJ-H'" font-size="24">1</text>
 </g>
-<g id="13" style="cursor:pointer">
+<g id="module13" style="cursor:pointer">
 	<rect x="20" y="84.022" fill="#9897A5" width="325" height="53.115"/>
 	<text transform="matrix(1 0 0 1 157.6647 118.1153)" font-family="'PingFangHK-Thin-83pv-RKSJ-H'" font-size="24">主控制板</text>
 </g>
 <g id="lx" display="none">
 	<circle display="inline" fill="#008C01" cx="119.027" cy="110.579" r="11"/>
 </g>
-<g id="1" style="cursor:pointer">
+<g id="module1" style="cursor:pointer">
 	<rect x="66.256" y="150.113" fill="#E4CAB1" width="273" height="54.887"/>
 	<text transform="matrix(1 0 0 1 157.6649 185.0923)" fill="#000333" font-family="'PingFangHK-Thin-83pv-RKSJ-H'" font-size="24">模块1</text>
 </g>
 <g id="l1Warn">
 	<circle fill="#008C01" cx="119.027" cy="177.556" r="11"/>
 </g>
-<g id="7" style="cursor:pointer">
+<g id="module7" style="cursor:pointer">
 	<rect x="66.256" y="209.146" fill="#E4CAB1" width="273" height="54.887"/>
 	<text transform="matrix(1 0 0 1 157.6648 244.1263)" fill="#000333" font-family="'PingFangHK-Thin-83pv-RKSJ-H'" font-size="24">模块2</text>
 </g>
 <g id="l7Warn">
 	<circle fill="#008C01" cx="119.027" cy="236.59" r="11"/>
 </g>
-<g id="2" style="cursor:pointer">
+<g id="module2" style="cursor:pointer">
 	<rect x="66.256" y="284.607" fill="#E4CAB1" width="273" height="54.887"/>
 	<text transform="matrix(1 0 0 1 157.6649 319.5863)" fill="#000333" font-family="'PingFangHK-Thin-83pv-RKSJ-H'" font-size="24">模块3</text>
 </g>
 <g id="l2Warn">
 	<circle fill="#008C01" cx="119.027" cy="312.05" r="11"/>
 </g>
-<g id="8" style="cursor:pointer">
+<g id="module8" style="cursor:pointer">
 	<rect x="66.256" y="343.64" fill="#E4CAB1" width="273" height="54.887"/>
 	<text transform="matrix(1 0 0 1 157.6648 378.6203)" fill="#000333" font-family="'PingFangHK-Thin-83pv-RKSJ-H'" font-size="24">模块4</text>
 </g>
 <g id="l8Warn">
 	<circle fill="#008C01" cx="119.027" cy="371.084" r="11"/>
 </g>
-<g id="3" style="cursor:pointer">
+<g id="module3" style="cursor:pointer">
 	<rect x="66.256" y="419.101" fill="#E4CAB1" width="273" height="54.887"/>
 	<text transform="matrix(1 0 0 1 157.6649 454.0802)" fill="#000333" font-family="'PingFangHK-Thin-83pv-RKSJ-H'" font-size="24">模块5</text>
 </g>
 <g id="l3Warn">
 	<circle fill="#008C01" cx="119.027" cy="446.544" r="11"/>
 </g>
-<g id="9" style="cursor:pointer">
+<g id="module9" style="cursor:pointer">
 	<rect x="66.256" y="478.134" fill="#E4CAB1" width="273" height="54.887"/>
 	<text transform="matrix(1 0 0 1 157.6648 513.1143)" fill="#000333" font-family="'PingFangHK-Thin-83pv-RKSJ-H'" font-size="24">模块6</text>
 </g>
 <g id="l9Warn">
 	<circle fill="#008C01" cx="119.027" cy="505.578" r="11"/>
 </g>
-<g id="14" style="cursor:pointer">
+<g id="module14" style="cursor:pointer">
 	<rect x="384.782" y="84.022" fill="#9897A5" width="325" height="53.115"/>
 	<text transform="matrix(1 0 0 1 522.4469 118.1153)" font-family="'PingFangHK-Thin-83pv-RKSJ-H'" font-size="24">模块7</text>
 </g>
-<g id="l8" display="none">
+<g id="modulel8" display="none">
 	<circle display="inline" fill="#008C01" cx="483.809" cy="110.579" r="11"/>
 </g>
-<g id="4" style="cursor:pointer">
+<g id="module4" style="cursor:pointer">
 	<rect x="431.038" y="150.113" fill="#E4CAB1" width="273" height="54.887"/>
 	<text transform="matrix(1 0 0 1 522.447 185.0923)" fill="#000333" font-family="'PingFangHK-Thin-83pv-RKSJ-H'" font-size="24">模块8</text>
 </g>
 <g id="l4Warn">
 	<circle fill="#008C01" cx="483.809" cy="177.556" r="11"/>
 </g>
-<g id="10" style="cursor:pointer">
+<g id="module10" style="cursor:pointer">
 	<rect x="431.038" y="209.146" fill="#E4CAB1" width="273" height="54.887"/>
 	<text transform="matrix(1 0 0 1 522.447 244.1263)" fill="#000333" font-family="'PingFangHK-Thin-83pv-RKSJ-H'" font-size="24">模块9</text>
 </g>
 <g id="l10Warn">
 	<circle fill="#008C01" cx="483.809" cy="236.59" r="11"/>
 </g>
-<g id="5" style="cursor:pointer">
+<g id="module5" style="cursor:pointer">
 	<rect x="431.038" y="284.607" fill="#E4CAB1" width="273" height="54.887"/>
 	<text transform="matrix(1 0 0 1 522.447 319.5863)" fill="#000333" font-family="'PingFangHK-Thin-83pv-RKSJ-H'" font-size="24">模块10</text>
 </g>
 <g id="l5Warn">
 	<circle fill="#008C01" cx="483.809" cy="312.05" r="11"/>
 </g>
-<g id="11" style="cursor:pointer">
+<g id="module11" style="cursor:pointer">
 	<rect x="431.038" y="343.64" fill="#E4CAB1" width="273" height="54.887"/>
 	<text transform="matrix(1 0 0 1 522.447 378.6203)" fill="#000333" font-family="'PingFangHK-Thin-83pv-RKSJ-H'" font-size="24">模块11</text>
 </g>
 <g id="l11Warn">
 	<circle fill="#008C01" cx="483.809" cy="371.084" r="11"/>
 </g>
-<g id="6" style="cursor:pointer">
+<g id="module6" style="cursor:pointer">
 	<rect x="431.038" y="419.101" fill="#E4CAB1" width="273" height="54.887"/>
 	<text transform="matrix(1 0 0 1 522.447 454.0802)" fill="#000333" font-family="'PingFangHK-Thin-83pv-RKSJ-H'" font-size="24">模块12</text>
 </g>
 <g id="l6Warn">
 	<circle fill="#008C01" cx="483.809" cy="446.544" r="11"/>
 </g>
-<g id="12" style="cursor:pointer">
+<g id="module12" style="cursor:pointer">
 	<rect x="431.038" y="478.134" fill="#E4CAB1" width="273" height="54.887"/>
 	<text transform="matrix(1 0 0 1 522.447 513.1143)" fill="#000333" font-family="'PingFangHK-Thin-83pv-RKSJ-H'" font-size="24">模块13</text>
 </g>
 <g id="l12Warn">
 	<circle fill="#008C01" cx="483.809" cy="505.578" r="11"/>
 </g>
-<g id="15" style="cursor:pointer">
+<g id="module15" style="cursor:pointer">
 	<rect x="19.782" y="566.57" fill="#9897A5" width="690" height="53.115"/>
 	<text transform="matrix(1 0 0 1 323.1249 600.6642)" font-family="'PingFangHK-Thin-83pv-RKSJ-H'" font-size="24">模块14</text>
 </g>
-<g id="l15" display="none">
+<g id="modulel15" display="none">
 	<circle display="inline" fill="#008B01" cx="290.201" cy="593.128" r="11"/>
 </g>
-<g id="l16" display="none">
+<g id="modulel16" display="none">
 	<circle display="inline" fill-rule="evenodd" clip-rule="evenodd" fill="#DCDBE9" cx="451.508" cy="35.669" r="11"/>
 </g>
-<g id="l17" display="none">
+<g id="modulel17" display="none">
 	<circle display="inline" fill-rule="evenodd" clip-rule="evenodd" fill="#00FF01" cx="560.282" cy="35.669" r="11"/>
 </g>
 <g id="l0Status">

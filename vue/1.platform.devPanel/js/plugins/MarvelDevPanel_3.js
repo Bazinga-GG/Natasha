@@ -5,52 +5,52 @@
         //region Const
 
         var ITEMS = [{
-            id: "0",
+            id: "module0",
             name: "整机"
         }, {
-            id: "1",
+            id: "module1",
             name: "光学模块"
         }, {
-            id: "2",
+            id: "module2",
             name: "光学模块"
         }, {
-            id: "3",
+            id: "module3",
             name: "光学模块"
         }, {
-            id: "4",
+            id: "module4",
             name: "光学模块"
         }, {
-            id: "5",
+            id: "module5",
             name: "光学模块"
         }, {
-            id: "6",
+            id: "module6",
             name: "光学模块"
         }, {
-            id: "33",
+            id: "module33",
             name: "电学模块"
         }, {
-            id: "34",
+            id: "module34",
             name: "电学模块"
         }, {
-            id: "35",
+            id: "module35",
             name: "电学模块"
         }, {
-            id: "36",
+            id: "module36",
             name: "电学模块"
         }, {
-            id: "37",
+            id: "module37",
             name: "电学模块"
         }, {
-            id: "38",
+            id: "module38",
             name: "电学模块"
         }, {
-            id: "13",
+            id: "module13",
             name: "主控制板"
         }, {
-            id: "14",
+            id: "module14",
             name: "合束模块"
         }, {
-            id: "15",
+            id: "module15",
             name: "强电单元"
         }];
 
@@ -85,7 +85,7 @@
         };
 
         var _bindEvent = function (strId, oCallbackClick, oCallbackRClick) {
-            var oBD0 = SVG.get(strId);
+            var oBD0 = SVG("#" + strId);
             oBD0.mousedown(function (evt) {
                 if (evt.button == 0 || evt.which == 1) {
                     oCallbackClick(this);
@@ -105,7 +105,7 @@
         //region imsg
 
         this.setLightColor = function (strId, strColor) {
-            var oLightG = SVG.get(strId);
+            var oLightG = SVG("#" + strId);
             if (oLightG == undefined) {
                 return;
             }

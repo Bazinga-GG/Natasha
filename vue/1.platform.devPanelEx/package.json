@@ -1,6 +1,6 @@
 {
   "name": "natasha-devpanelex",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "natasha-devpanelex widget",
   "author": "Author",
   "private": false,
@@ -10,10 +10,10 @@
     "image"
   ],
   "dependencies": {
+    "@svgdotjs/svg.js": "^3.0.16",
+    "html2canvas": "1.0.0-rc.3",
     "jquery": "3.4.1",
-    "svg.js": "2.6.3",
-    "html2canvas": "1.0.0-alpha.12",
-    "save-svg-as-png": "1.2.0"
+    "save-svg-as-png": "1.4.5",
   },
   "engines": {
     "node": ">= 6.0.0",

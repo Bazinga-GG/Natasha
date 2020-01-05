@@ -6,8 +6,8 @@
   import "natasha-devpanelex/css/MarvelRackPanel.css";
 
   require('jquery/dist/jquery.min.js');
-  require('svg.js/dist/svg.min.js');
-  var saveAsPngDefine = require('save-svg-as-png/saveSvgAsPng.js');
+  require('@svgdotjs/svg.js/dist/svg.min.js');
+  var saveAsPngDefine = require('save-svg-as-png/lib/saveSvgAsPng.js');
   require('html2canvas/dist/html2canvas.min.js');
   require('natasha-devpanelex/js/MarvelRackCabinet.js');
 

@@ -175,7 +175,6 @@
 
     this.init = function (oOptions) {
       $.extend(true, this.m_oOptions, oOptions);
-      this.m_oDraw = SVG(this.m_oOptions.id);
     };
 
     //endregion
@@ -193,7 +192,12 @@
       var oOption = this.m_oOptions[strDevType];
       if (oOption != undefined) {
         $("#" + this.m_oOptions.id).load(oOption.url, function (oData) {
+          $("#" + self.m_oOptions.id).empty();
+          self.m_oDraw = SVG().addTo("#" + self.m_oOptions.id);
           self.m_oDraw.svg(oData);
+          var oSvg = SVG('svg svg');
+          var oOriginViewBox = oSvg.node.attributes.viewBox.nodeValue;
+          self.m_oDraw.viewbox(oOriginViewBox);
           oOption.plugin.init(self.m_oOptions);
           self.m_oOptions.events.afterInitPlugin();
         });

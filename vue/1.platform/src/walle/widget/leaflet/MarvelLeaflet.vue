@@ -6,7 +6,6 @@
 <script>
   import "leaflet/dist/leaflet.css";
   import "natasha-gis/css/leaflet.custom.css";
-  import "leaflet.polylinemeasure/Leaflet.PolylineMeasure.css";
   import "natasha-gis/css/MarvelGis.css";
   import "@skyraptor/leaflet.pm/dist/leaflet.pm.css";
 
@@ -14,8 +13,6 @@
   require('jquery/dist/jquery.min.js');
 
   require('leaflet/dist/leaflet.js');
-  require('leaflet.polylinemeasure/Leaflet.PolylineMeasure.js');
-  require('leaflet.heat/dist/leaflet-heat.js');
   require('leaflet-polylinedecorator/dist/leaflet.polylineDecorator.js');
   require('leaflet-deepzoom/leaflet-deepzoom.js');
   require('leaflet-easyprint/dist/bundle.js');

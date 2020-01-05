@@ -24,7 +24,7 @@
 
       //#region slot
       for(var i = 1; i<SLOT_NUM_MAX; i++){
-        var oSlot = SVG.get('slot' + i);
+        var oSlot = SVG("#" + 'slot' + i);
         if(oSlot != null){
           _bindClickFunction(oSlot, "slot" + i, oOptions.events);
         }
@@ -70,7 +70,7 @@
     //#region insertBoard
 
     this.insertBoard = function (strId, strLabel) {
-      var oBj = SVG.get(strId);
+      var oBj = SVG("#" + strId);
       if(oBj == null){
         return;
       }
@@ -93,7 +93,7 @@
       }
     };
     this.colorDoubleBoard = function (strId, strLabel) {
-      var oBj = SVG.get(strId);
+      var oBj = SVG("#" + strId);
       if(oBj == null){
         return;
       }
@@ -106,7 +106,7 @@
     this._changePathStyle = function (strSlotKey,arrSlots) {
       for(var i=0; i< arrSlots.length; i++){
         var strSlotId  = strSlotKey + arrSlots[i];
-        var oBj = SVG.get(strSlotId);
+        var oBj = SVG("#" + strSlotId);
         if(oBj == null){
           return;
         }
@@ -116,7 +116,7 @@
       }
     };
     this._colorBoardPath = function (strSlot, isClear) {
-      var oBj = SVG.get(strSlot);
+      var oBj = SVG("#" + strSlot);
       if(oBj == null){
         return;
       }
@@ -136,7 +136,7 @@
     //#region changeLabel
 
     this.changeLabel = function (strId, strLabel) {
-      var oBj = SVG.get(strId);
+      var oBj = SVG("#" + strId);
       if(oBj == null){
         return;
       }
@@ -151,7 +151,7 @@
     //#region colorBoard
     
     this.colorBoard = function (strId, strLabel) {
-      var oBj = SVG.get(strId);
+      var oBj = SVG("#" + strId);
       if(oBj == null){
         return;
       }
@@ -166,7 +166,7 @@
     //#region clearBoard
 
     this.clearBoard = function (strId) {
-      var oBj = SVG.get(strId);
+      var oBj = SVG("#" + strId);
       if(oBj == null){
         return;
       }

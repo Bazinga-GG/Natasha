@@ -5,88 +5,88 @@
         //region Const
 
         var ITEMS = [{
-            id: "0",
+            id: "module0",
             name: "整机"
         }, {
-            id: "1",
+            id: "module1",
             name: "光学模块"
         }, {
-            id: "2",
+            id: "module2",
             name: "光学模块"
         }, {
-            id: "3",
+            id: "module3",
             name: "光学模块"
         }, {
-            id: "4",
+            id: "module4",
             name: "光学模块"
         }, {
-            id: "5",
+            id: "module5",
             name: "光学模块"
         }, {
-            id: "6",
+            id: "module6",
             name: "光学模块"
         }, {
-            id: "7",
+            id: "module7",
             name: "光学模块"
         }, {
-            id: "8",
+            id: "module8",
             name: "光学模块"
         }, {
-            id: "9",
+            id: "module9",
             name: "光学模块"
         }, {
-            id: "10",
+            id: "module10",
             name: "光学模块"
         }, {
-            id: "11",
+            id: "module11",
             name: "光学模块"
         }, {
-            id: "12",
+            id: "module12",
             name: "光学模块"
         }, {
-            id: "33",
+            id: "module33",
             name: "电学模块"
         }, {
-            id: "34",
+            id: "module34",
             name: "电学模块"
         }, {
-            id: "35",
+            id: "module35",
             name: "电学模块"
         }, {
-            id: "36",
+            id: "module36",
             name: "电学模块"
         }, {
-            id: "37",
+            id: "module37",
             name: "电学模块"
         }, {
-            id: "38",
+            id: "module38",
             name: "电学模块"
         }, {
-            id: "39",
+            id: "module39",
             name: "电学模块"
         }, {
-            id: "40",
+            id: "module40",
             name: "电学模块"
         }, {
-            id: "41",
+            id: "module41",
             name: "电学模块"
         }, {
-            id: "42",
+            id: "module42",
             name: "电学模块"
         }, {
-            id: "43",
+            id: "module43",
             name: "电学模块"
         }, {
-            id: "44",
+            id: "module44",
             name: "电学模块"
         }, {
-            id: "25",
+            id: "module25",
             name: "主控制板"
         }, {
-            id: "26",
+            id: "module26",
             name: "合束模块"
         }, {
-            id: "27",
+            id: "module27",
             name: "强电单元"
         }];
 
@@ -121,7 +121,7 @@
         };
 
         var _bindEvent = function (strId, oCallbackClick, oCallbackRClick) {
-            var oBD0 = SVG.get(strId);
+            var oBD0 = SVG("#" + strId);
             oBD0.mousedown(function (evt) {
                 if (evt.button == 0 || evt.which == 1) {
                     oCallbackClick(this);
@@ -141,7 +141,7 @@
         //region imsg
 
         this.setLightColor = function (strId, strColor) {
-            var oLightG = SVG.get(strId);
+            var oLightG = SVG("#" + strId);
             if (oLightG == undefined) {
                 return;
             }

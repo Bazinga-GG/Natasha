@@ -5,31 +5,31 @@
         //region Const
 
         var ITEMS = [{
-            id: "0",
+            id: "module0",
             name: "整机"
         }, {
-            id: "1",
+            id: "module1",
             name: "铲斗油缸"
         }, {
-            id: "2",
+            id: "module2",
             name: "斗杆油缸"
         }, {
-            id: "3",
+            id: "module3",
             name: "照明灯"
         }, {
-            id: "4",
+            id: "module4",
             name: "履带杆"
         }, {
-            id: "5",
+            id: "module5",
             name: "履带"
         }, {
-            id: "6",
+            id: "module6",
             name: "发动机"
         }, {
-            id: "7",
+            id: "module7",
             name: "剩余燃油量"
         }, {
-            id: "8",
+            id: "module8",
             name: "驱动轮"
         }];
 
@@ -64,7 +64,7 @@
         };
 
         var _bindEvent = function (strId, oCallbackClick, oCallbackRClick) {
-            var oBD0 = SVG.get(strId);
+            var oBD0 = SVG( "#" + strId);
             oBD0.mousedown(function (evt) {
                 if (evt.button == 0 || evt.which == 1) {
                     oCallbackClick(this);
@@ -84,7 +84,7 @@
         //region imsg
 
         this.setLightColor = function (strId, strColor) {
-            var oLightG = SVG.get(strId);
+            var oLightG = SVG( "#" + strId);
             if (oLightG == undefined) {
                 return;
             }

@@ -5,22 +5,22 @@
         //region Const
 
         var ITEMS = [{
-            id: "0",
+            id: "module0",
             name: "切割整机"
         }, {
-            id: "1",
+            id: "module1",
             name: "切割工艺"
         }, {
-            id: "2",
+            id: "module2",
             name: "电容调高"
         }, {
-            id: "3",
+            id: "module3",
             name: "电动切割头"
         }, {
-            id: "4",
+            id: "module4",
             name: "激光器"
         }, {
-            id: "5",
+            id: "module5",
             name: "水冷机组"
         }];
 
@@ -55,7 +55,7 @@
         };
 
         var _bindEvent = function (strId, oCallbackClick, oCallbackRClick) {
-            var oBD0 = SVG.get(strId);
+            var oBD0 = SVG("#" + strId);
             oBD0.mousedown(function (evt) {
                 if (evt.button == 0 || evt.which == 1) {
                     oCallbackClick(this);
@@ -75,7 +75,7 @@
         //region imsg
 
         this.setLightColor = function (strId, strColor) {
-            var oLightG = SVG.get(strId);
+            var oLightG = SVG("#" + strId);
             if (oLightG == undefined) {
                 return;
             }

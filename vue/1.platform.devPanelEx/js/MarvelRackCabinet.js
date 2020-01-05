@@ -109,7 +109,7 @@
       if (m_Draw) {
         m_Draw.clear();
       } else {
-        m_Draw = SVG(m_oOptions.id);
+        m_Draw = SVG().addTo("#" + m_oOptions.id);
       }
       m_Draw.viewbox(m_oOptions.viewBox);
       m_Draw.svg(data);
@@ -120,15 +120,15 @@
         m_oOptions.subBuObjs.forEach(function (oSubBuObj, index) {
           var strSubObjId = oSubBuObj.id;
           var strTargetId = _generateId(strSubObjId);
-          var oBD = SVG.get(strTargetId);
+          var oBD = SVG("#" + strTargetId);
           _bindEventToMainSlot(oBD, strSubObjId);
         });
         var strSlotId = m_oOptions.id;
-        var chassisBD = SVG.get(strSlotId);
+        var chassisBD = SVG("#" + strSlotId);
         chassisBD.off("mousedown");
       } else {
         var strSlotId = m_oOptions.id;
-        var oBD = SVG.get(strSlotId);
+        var oBD = SVG("#" + strSlotId);
 
         oBD.mousedown(function (evt) {
           if (_isLeftClick(evt)) {
@@ -265,7 +265,7 @@
     var _addNoPictureColor = function (strSlotId) {
       if (m_oOptions.hasChassis) {
         var strTargetId = _generateId(strSlotId);
-        var oElement = SVG.get(strTargetId);
+        var oElement = SVG("#" + strTargetId);
         if (oElement) {
           arr_NoPicIds.push(strSlotId);
           var oChild = oElement.children()[0];
@@ -273,7 +273,7 @@
         }
       } else {
         var strTargetId = _generateId("slot1");
-        var oElement = SVG.get(strTargetId);
+        var oElement = SVG("#" + strTargetId);
         if (oElement) {
           arr_NoPicIds.push("slot1");
           var oChild = oElement.children()[0];
@@ -294,7 +294,7 @@
       if (isDel) {
         arr_NoPicIds = _arr;
         var strTargetId = _generateId(strSlotId);
-        var oElement = SVG.get(strTargetId);
+        var oElement = SVG("#" + strTargetId);
         if (oElement) {
           var oChild = oElement.children()[0];
           oChild.removeClass(NOPIC_CLASS_NAME);
@@ -302,7 +302,7 @@
       }
     };
     var _getSlotPos = function (strId) {
-      var oBDTarget = SVG.get(strId);
+      var oBDTarget = SVG("#" + strId);
       var oBDTargetChild = oBDTarget.children()[0];
       var iX = oBDTargetChild.x();
       var iY = oBDTargetChild.y();
@@ -359,16 +359,16 @@
     };
 
     var _findElementByStartPos = function (strPropVal) {
-      var oElement = SVG.select("g[" + startPos + "='" + strPropVal + "']");
-      if (oElement.length()) {
-        return oElement.members[0];
+      var oElement = SVG("#" + m_oOptions.id).find("g[" + startPos + "='" + strPropVal + "']");
+      if (oElement.length>0) {
+        return oElement[0];
       }
     };
 
     this.setActiveStyle = function () {
       if (arguments.length) {
         var strTargetId = _generateId.apply(self, arguments);
-        var oElement = SVG.get(strTargetId);
+        var oElement = SVG("#" + strTargetId);
         if (oElement) {
           arr_ActiveIds.push(strTargetId);
           var oChild = oElement.children()[0];
@@ -379,7 +379,7 @@
 
     this.removeAllActiveStyle = function () {
       arr_ActiveIds.forEach(function (strTargetId) {
-        var oElement = SVG.get(strTargetId);
+        var oElement = SVG("#" + strTargetId);
         if (oElement) {
           var oChild = oElement.children()[0];
           oChild.removeClass(ACTIVE_CLASS_NAME);
@@ -391,7 +391,7 @@
     this.setDisabledStyle = function (strSlotId) {
       if (arguments.length) {
         var strTargetId = _generateId.apply(self, arguments);
-        var oElement = SVG.get(strTargetId);
+        var oElement = SVG("#" + strTargetId);
         if (oElement) {
           arr_DisabledIds.push(strSlotId);
           var oChild = oElement.children()[0];
@@ -403,7 +403,7 @@
     this.removeAllDisabledStyle = function () {
       arr_DisabledIds.forEach(function (strSlotId) {
         var strTargetId = _generateId(strSlotId);
-        var oElement = SVG.get(strTargetId);
+        var oElement = SVG("#" + strTargetId);
         if (oElement) {
           var oChild = oElement.children()[0];
           oChild.removeClass(DISABLED_CLASS_NAME);
@@ -446,7 +446,7 @@
         oBuObj.subBuObjs.forEach(function (oSubBuObj) {
           var strSubBuObjId = oSubBuObj.id;
           var strTargetId = _generateId(strSlotId, strSubBuObjId);
-          var oElement = SVG.get(strTargetId);
+          var oElement = SVG("#" + strTargetId);
           oElement.mousedown(function (evt) {
             if (_isLeftClick(evt)) {
               oEventOptions.callbackOnSubClick(strSlotId, oBuObj, strSubBuObjId, evt);
@@ -530,7 +530,7 @@
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
           var strTargetId = _generateId(strFirstSlotId, strSecondSlotId);
-          var oElement = SVG.get(strTargetId);
+          var oElement = SVG("#" + strTargetId);
           if (oElement) {
             arr_subCard_NoPicIds.push(strTargetId);
             var oChild = oElement.children()[0];
@@ -563,7 +563,7 @@
       }
       if (isDel) {
         arr_subCard_NoPicIds = _arr;
-        var oElement = SVG.get(strSlotId);
+        var oElement = SVG("#" + strSlotId);
         if (oElement) {
           var oChild = oElement.children()[0];
           oChild.removeClass(NOPIC_CLASS_NAME);

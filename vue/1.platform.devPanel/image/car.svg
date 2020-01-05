@@ -3,7 +3,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%"
 	 height="100%" viewBox="0 0 730 660" enable-background="new 0 0 730 660" xml:space="preserve">
-<g id="0">
+<g id="module0">
 	<g>
 		
 			<image overflow="visible" width="518" height="567" xlink:href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgEASABIAAD/7AARRHVja3kAAQAEAAAAHgAA/+4AIUFkb2JlAGTAAAAAAQMA
@@ -428,35 +428,35 @@ u2q0053GTVIfIjqKywn4cccLvE5vzsSaP6Tusl8e6y2v+H5h/9k=" transform="matrix(1 0 0 1 
 	<line fill="none" stroke="#E71F19" stroke-miterlimit="10" x1="410.636" y1="455.5" x2="289.556" y2="455.5"/>
 	<line fill="none" stroke="#E71F19" stroke-miterlimit="10" x1="257.404" y1="563.738" x2="216.232" y2="563.738"/>
 </g>
-<g id="1" style="cursor:pointer">
+<g id="module1" style="cursor:pointer">
 	<rect x="12.033" y="77.287" fill="#D3D3D3" width="117.092" height="33.366"/>
 	<text transform="matrix(1 0 0 1 54.0332 98.9777)" font-family="'AdobeSongStd-Light-GBpc-EUC-H'" font-size="16">铲斗油缸</text>
 </g>
-<g id="2" style="cursor:pointer">
+<g id="module2" style="cursor:pointer">
 	<rect x="405.825" y="88.287" fill="#D3D3D3" width="117.092" height="33.366"/>
 	<text transform="matrix(1 0 0 1 447.8242 109.9777)" font-family="'AdobeSongStd-Light-GBpc-EUC-H'" font-size="16">斗杆油缸</text>
 </g>
-<g id="3" style="cursor:pointer">
+<g id="module3" style="cursor:pointer">
 	<rect x="489.946" y="280.82" fill="#D3D3D3" width="117.092" height="33.366"/>
 	<text transform="matrix(1 0 0 1 531.9457 302.5115)" font-family="'AdobeSongStd-Light-GBpc-EUC-H'" font-size="16">照明灯</text>
 </g>
-<g id="4" style="cursor:pointer">
+<g id="module4" style="cursor:pointer">
 	<rect x="148.114" y="438.817" fill="#D3D3D3" width="117.092" height="33.366"/>
 	<text transform="matrix(1 0 0 1 190.1133 460.5081)" font-family="'AdobeSongStd-Light-GBpc-EUC-H'" font-size="16">履带杆</text>
 </g>
-<g id="5" style="cursor:pointer">
+<g id="module5" style="cursor:pointer">
 	<rect x="84.328" y="547.055" fill="#D3D3D3" width="117.092" height="33.366"/>
 	<text transform="matrix(1 0 0 1 126.3277 568.7458)" font-family="'AdobeSongStd-Light-GBpc-EUC-H'" font-size="16">履带</text>
 </g>
-<g id="6" style="cursor:pointer">
+<g id="module6" style="cursor:pointer">
 	<rect x="566.425" y="377.291" fill="#D3D3D3" width="117.092" height="33.366"/>
 	<text transform="matrix(1 0 0 1 608.4252 398.9816)" font-family="'AdobeSongStd-Light-GBpc-EUC-H'" font-size="16">发动机</text>
 </g>
-<g id="7" style="cursor:pointer">
+<g id="module7" style="cursor:pointer">
 	<rect x="586.425" y="471.793" fill="#D3D3D3" width="131.541" height="33.366"/>
 	<text transform="matrix(1 0 0 1 628.4252 493.4841)" font-family="'AdobeSongStd-Light-GBpc-EUC-H'" font-size="16">剩余燃油量</text>
 </g>
-<g id="8" style="cursor:pointer">
+<g id="module8" style="cursor:pointer">
 	<rect x="576.425" y="567.137" fill="#D3D3D3" width="117.092" height="33.366"/>
 	<text transform="matrix(1 0 0 1 618.4252 588.8278)" font-family="'AdobeSongStd-Light-GBpc-EUC-H'" font-size="16">驱动轮</text>
 </g>

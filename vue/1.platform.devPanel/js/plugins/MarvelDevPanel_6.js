@@ -5,7 +5,7 @@
         //region Const
 
         var ITEMS = [{
-            id: "0",
+            id: "module0",
             name: "整机"
         }];
 
@@ -40,7 +40,7 @@
         };
 
         var _bindEvent = function (strId, oCallbackClick, oCallbackRClick) {
-            var oBD0 = SVG.get(strId);
+            var oBD0 = SVG("#" + strId);
             oBD0.mousedown(function (evt) {
                 if (evt.button == 0 || evt.which == 1) {
                     oCallbackClick(this);
@@ -60,7 +60,7 @@
         //region imsg
 
         this.setLightColor = function (strId, strColor) {
-            var oLightG = SVG.get(strId);
+            var oLightG = SVG("#" + strId);
             if (oLightG == undefined) {
                 return;
             }
