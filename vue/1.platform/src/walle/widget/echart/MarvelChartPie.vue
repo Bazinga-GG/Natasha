@@ -82,6 +82,7 @@
       setData: function (oData) {
         this.chartData = oData;
         var option = {
+          backgroundColor:oData.backgroundColor,
           title: {
             text: oData.title,
             subtext: oData.subTitle,

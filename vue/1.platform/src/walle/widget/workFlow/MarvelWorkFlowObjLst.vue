@@ -94,6 +94,11 @@
         default: 26,
         required: false,
       },
+      showUserId: {
+        type: Boolean,
+        default: true,
+        required: false,
+      },
       showChangeLimit: {
         type: Boolean,
         default: true,
@@ -121,7 +126,12 @@
         type: Boolean,
         default: true,
         required: false,
-      }
+      },
+      operationColumnInStart: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
     },
     data: function () {
       return {
@@ -221,15 +231,27 @@
           label: "创建人",
           key: "userId",
           type: "text",
-          visible: true,
+          visible: this.showUserId,
           width: "80px"
-        }, {
-          label: "操作",
-          key: "operation",
-          type: "icon",
-          visible: true,
-          width: "120px"
         }];
+        if(this.operationColumnInStart){
+          oCheckTitle.unshift({
+            label: "操作",
+            key: "operation",
+            type: "icon",
+            visible: true,
+            width: "100px"
+          })
+        }else{
+          oOptionTitle.push({
+            label: "操作",
+            key: "operation",
+            type: "icon",
+            visible: true,
+            width: "100px"
+          });
+        }
+
         var arrNewTitleV1 = oCheckTitle.concat(arrTitles);
         var arrNewTitleV2 = arrNewTitleV1.concat(oOptionTitle);
 
@@ -393,11 +415,11 @@
 
       //#endregion
       //#region 3rd
-      
+
       resetListFoot: function () {
         this.$refs['objLstGrid' + this.componentId].resetFoot();
       }
-      
+
       //#endregion
     },
     watch: {

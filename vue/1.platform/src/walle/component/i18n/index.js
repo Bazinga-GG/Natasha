@@ -33,5 +33,23 @@ export default {
   },
   setDefaultLang : function (strDefaultLang) {
     this.defaultLang = strDefaultLang;
-  }
+  },
+
+
+  initI18nEx: function (oMessages, strLang) {
+
+    //与换肤不同，需要先构造出oI18n
+    var oI18n = new VueI18n({
+      locale: strLang,    // 语言标识
+      messages: oMessages
+    });
+
+    //localeChange
+    this.localeChangeEx(oI18n, strLang);
+
+    return oI18n;
+  },
+  localeChangeEx: function (oI18n, strLang) {
+    oI18n.locale = strLang;
+  },
 }

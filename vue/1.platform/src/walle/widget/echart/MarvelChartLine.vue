@@ -81,6 +81,7 @@
       setData: function (oData) {
         this.chartData = oData;
         var option = {
+          backgroundColor:oData.backgroundColor,
           title: {
             text: oData.title
           },
@@ -96,12 +97,14 @@
           },
           yAxis: {
             type: 'value',
-            splitLine: {show: false},
-            boundaryGap: [0, '100%']
+            splitLine: {show: oData.splitLine},
+            boundaryGap: [0, '100%'],
+            min: oData.min,
+            max: oData.max
           },
           xAxis: {
-            splitLine: {show: false},
-            type: 'time'
+            splitLine: {show: oData.splitLine},
+            type: oData.xAxisType?oData.xAxisType:'time'
           },
           series: [{
             type: 'line',

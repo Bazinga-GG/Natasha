@@ -111,9 +111,11 @@
 
       _onMouseDown: function () {
         this.isMouseDown = true;
+        this.$emit('onMouseDown', this.icon);
       },
       _onMouseUp: function () {
         this.isMouseDown = false;
+        this.$emit('onMouseUp', this.icon);
       },
 
       //#endregion

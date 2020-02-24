@@ -18,6 +18,7 @@
             <marvel-log-view :ref="logRef"
                              :logItems="logs"
                              :filterOptions="logFilterOptions"
+                             @onLogItemClick="_callback4OnLogItemClick"
                              @onBtnClick="_callback4OnFilterBtnClick"
                              @onCheckBoxChange="_callback4OnFilterCheckBoxChange"></marvel-log-view>
           </div>
@@ -307,6 +308,9 @@
 
       _callback4OnClickRow: function (oRow) {
         this.$emit("onClickRow", oRow)
+      },
+      _callback4OnLogItemClick: function (oLogItem) {
+        this.$emit("onLogItemClick", oLogItem)
       },
       _callback4OnFilterBtnClick: function (oCheckParams, oItem) {
         this.$emit("onFilterBtnClick", oCheckParams, oItem)

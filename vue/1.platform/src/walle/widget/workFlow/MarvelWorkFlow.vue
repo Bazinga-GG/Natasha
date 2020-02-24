@@ -8,7 +8,11 @@
                      @onWizardClick="onWizardClick"></marvel-wizard>
     </div>
     <div class="bottomContArea">
-      <component v-bind:is="currentStep.uiCompName" :index="currentStep.index"></component>
+      <component v-bind:is="currentStep.uiCompName"
+                 :index="currentStep.index"
+                 :taskId="taskId"
+                 :subTaskId="subTaskId"
+                 :uiWFInstanceId="uiWFInstanceId"></component>
     </div>
   </div>
 </template>
@@ -32,6 +36,21 @@
       isClickable:{
         type: Boolean,
         default:true,
+        required: false,
+      },
+      taskId:{
+        type: [String,Number],
+        default:"",
+        required: false,
+      },
+      subTaskId:{
+        type: [String,Number],
+        default:"",
+        required: false,
+      },
+      uiWFInstanceId:{
+        type: [String,Number],
+        default:"",
         required: false,
       }
     },
@@ -74,6 +93,19 @@
             uiCompName: oTargetItem.uiCompName
           };
         }
+      },
+
+      setUserUiComponent: function (userComponent) {
+        // for(var i = 0; i<this.stepItems.length; i){
+        //   var oItem = this.stepItems[i];
+        //   if(oItem.uiCompName == userComponent){
+        //     this.currentStep = oItem;
+        //     break;
+        //   }
+        // }
+
+        //TODO:此处业务侧强行修改未注册到stepItems的componentName,待修改
+        this.currentStep.uiCompName = userComponent;
       },
 
       //#endregion

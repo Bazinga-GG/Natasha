@@ -26,10 +26,11 @@
         <span class="logText"
               :id="logItem.logId"
               :class="[
+              {clickable: logItem.clickable},
               {warningLog: logItem.status == 'warning'},
               {errorLog: logItem.status == 'error'},
               {noticeLog: logItem.status == 'notice'}
-              ]">[{{logItem.createTime}}]: <b>{{logItem.content}}</b></span>
+              ]" v-on:click="_onLogItemClick(logItem)">[{{logItem.createTime}}]: <b>{{logItem.content}}</b></span>
       </div>
     </div>
   </div>
@@ -111,6 +112,12 @@
         return arrPramas;
       },
 
+      _onLogItemClick: function(oLogItem){
+        if(oLogItem.clickable){
+          this._callback4OnLogItemClick(oLogItem);
+        }
+      },
+
       //#endregion
       //#region callback
 
@@ -119,6 +126,9 @@
       },
       _callback4OnCheckBoxChange: function (oCheckParams) {
         this.$emit("onCheckBoxChange", oCheckParams)
+      },
+      _callback4OnLogItemClick: function (oLogItem) {
+        this.$emit("onLogItemClick", oLogItem)
       },
 
       //#endregion
@@ -225,6 +235,15 @@
     line-height: 14px;
     position: relative;
     bottom: 2px;
+  }
+
+  .clickable{
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .clickable:hover{
+    font-style: italic;
   }
 
   .noticeLog{

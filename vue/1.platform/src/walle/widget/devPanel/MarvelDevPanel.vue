@@ -3,10 +3,15 @@
 </template>
 
 <script>
+  const obj = require('@svgdotjs/svg.js');
+  const SVG = (arg) => {
+    return obj.SVG(arg)
+  };
+  Object.assign(SVG, obj);
+  window.SVG = SVG;
+
   import "natasha-devpanel/css/MarvelDevPanel.css";
-  
   require('jquery/dist/jquery.min.js');
-  require('@svgdotjs/svg.js/dist/svg.min.js');
   require('natasha-devpanel/js/plugins/MarvelDevPanel_1.js');
   require('natasha-devpanel/js/plugins/MarvelDevPanel_2.js');
   require('natasha-devpanel/js/plugins/MarvelDevPanel_3.js');

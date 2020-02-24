@@ -154,29 +154,29 @@
               data: this.chartData.data.sort(function (a, b) {
                 return b.value[2] - a.value[2];
               }).slice(0, this.chartData.topN),
-              symbolSize: function (val) {
-                return val[2] / 10;
-              },
-              showEffectOn: 'render',
               rippleEffect: {
                 brushType: 'stroke'
               },
-              hoverAnimation: true,
+              showEffectOn: 'render',
+              symbolSize: function (val) {
+                return val[2] / 10;
+              },
               label: {
                 normal: {
-                  formatter: '{b}',
                   position: 'right',
+                  formatter: '{b}',
                   show: true
                 }
               },
+              zlevel: 1,
+              hoverAnimation: true,
               itemStyle: {
                 normal: {
-                  color: '#f4e925',
                   shadowBlur: 10,
+                  color: '#f4e925',
                   shadowColor: '#333'
                 }
-              },
-              zlevel: 1
+              }
             }
           ]
           //endregion

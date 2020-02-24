@@ -6,7 +6,7 @@
   import 'natasha-topo/css/MarvelTopo.css';
 
   window.keyboardJS = require('keyboardjs/dist/keyboard.min.js');
-  require('konva/konva.min.js');
+  window.Konva = require('konva/konva.min.js');
   require('jquery/dist/jquery.min.js');
   require('natasha-topo/js/_1_stage/MarvelTopoResource.js');
   require('natasha-topo/js/_1_stage/MarvelTopoStage.js');

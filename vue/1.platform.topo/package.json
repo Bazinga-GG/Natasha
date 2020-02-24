@@ -10,8 +10,8 @@
     "js"
   ],
   "dependencies": {
-    "konva": "1.7.6",
-    "keyboardjs": "2.3.3",
+    "konva": "4.0.18",
+    "keyboardjs": "2.5.1",
     "jquery": "3.4.1"
   },
   "engines": {

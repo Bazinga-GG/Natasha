@@ -197,6 +197,14 @@
           self.m_oDraw.svg(oData);
           var oSvg = SVG('svg svg');
           var oOriginViewBox = oSvg.node.attributes.viewBox.nodeValue;
+          var oOriginX = oSvg.node.attributes.x.nodeValue;
+          var oOriginY = oSvg.node.attributes.y.nodeValue;
+          var oOriginW = oSvg.node.attributes.width.nodeValue;
+          var oOriginH = oSvg.node.attributes.height.nodeValue;
+          self.m_oDraw.x(oOriginX);
+          self.m_oDraw.y(oOriginY);
+          self.m_oDraw.width(oOriginW);
+          self.m_oDraw.height(oOriginH);
           self.m_oDraw.viewbox(oOriginViewBox);
           oOption.plugin.init(self.m_oOptions);
           self.m_oOptions.events.afterInitPlugin();

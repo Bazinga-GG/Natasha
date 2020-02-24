@@ -128,12 +128,15 @@
           "GK_1000": {
             url: require("../../../../../../static/image/devPanel/gk.svg"),
           },
+          "mc_board": {
+            url: require("../../../../../../static/image/devPanel/mc_board.svg"),
+          },
         };
         this.$refs.refDevPanel.init(selfConfig);
-        this.$refs.refDevPanel.initPlugin("car");
+        this.$refs.refDevPanel.initPlugin("mc_board");
 
         this.devPanelTimer = MarvelTimer.startTimer(function () {
-          var oPlugin = self.$refs.refDevPanel.getPlugin("car");
+          var oPlugin = self.$refs.refDevPanel.getPlugin("mc_board");
           if (oPlugin) {
             var i = Math.random();
             // if (i < 0.3) {
@@ -145,19 +148,19 @@
             // else {
             //   oPlugin.setLightColor("l0Status", "#808080");
             // }
-            oPlugin.setLightColor("l0Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
-            oPlugin.setLightColor("l0Status", Math.random() > 0.5 ? "#008c01" : "#f5df28");
-            oPlugin.setLightColor("l2Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
-            oPlugin.setLightColor("l3Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
-            oPlugin.setLightColor("l4Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
-            oPlugin.setLightColor("l5Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
-            oPlugin.setLightColor("l6Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
-            oPlugin.setLightColor("l7Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
-            oPlugin.setLightColor("l8Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
-            oPlugin.setLightColor("l9Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
-            oPlugin.setLightColor("l10Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
-            oPlugin.setLightColor("l11Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
-            oPlugin.setLightColor("l12Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
+            oPlugin.setLightColor("light1", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
+            // oPlugin.setLightColor("l0Status", Math.random() > 0.5 ? "#008c01" : "#f5df28");
+            // oPlugin.setLightColor("l2Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
+            // oPlugin.setLightColor("l3Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
+            // oPlugin.setLightColor("l4Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
+            // oPlugin.setLightColor("l5Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
+            // oPlugin.setLightColor("l6Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
+            // oPlugin.setLightColor("l7Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
+            // oPlugin.setLightColor("l8Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
+            // oPlugin.setLightColor("l9Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
+            // oPlugin.setLightColor("l10Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
+            // oPlugin.setLightColor("l11Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
+            // oPlugin.setLightColor("l12Warn", Math.random() > 0.5 ? "#ff4c4c" : "#008c01");
           }
         }, 1000);
       },

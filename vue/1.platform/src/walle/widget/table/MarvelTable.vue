@@ -61,6 +61,7 @@ multiDropdown：下拉框多选，支持度不好，待优化
                            :hasFoot="false"
                            :minRowH="minRowH"
                            v-on:onTitleCheckOrUncheck="onTitleCheckOrUncheck"
+                           v-on:onContextClickRow="onContextClickRow"
                            v-on:onClickRow="onClickRow"
                            v-on:onDblclickRow="onDblclickRow"
                            v-on:onRowCheckOrUnCheck="onRowCheckOrUnCheck"
@@ -95,6 +96,7 @@ multiDropdown：下拉框多选，支持度不好，待优化
                            :hasFoot="false"
                            :minRowH="minRowH"
                            v-on:onTitleCheckOrUncheck="onTitleCheckOrUncheck"
+                           v-on:onContextClickRow="onContextClickRow"
                            v-on:onClickRow="onClickRow"
                            v-on:onDblclickRow="onDblclickRow"
                            v-on:onRowCheckOrUnCheck="onRowCheckOrUnCheck"
@@ -126,6 +128,7 @@ multiDropdown：下拉框多选，支持度不好，待优化
                            :hasFoot="false"
                            :minRowH="minRowH"
                            v-on:onTitleCheckOrUncheck="onTitleCheckOrUncheck"
+                           v-on:onContextClickRow="onContextClickRow"
                            v-on:onClickRow="onClickRow"
                            v-on:onDblclickRow="onDblclickRow"
                            v-on:onRowCheckOrUnCheck="onRowCheckOrUnCheck"
@@ -1031,11 +1034,12 @@ multiDropdown：下拉框多选，支持度不好，待优化
         var iLength = Math.max(arrLeftRows.length, arrCenterRows.length, arrRightRows.length);
         for (var i = 0; i < iLength; i++) {
           var leftRow = JSON.parse(JSON.stringify(arrLeftRows[i]?arrLeftRows[i]:[]));
+          var leftRowLength = leftRow.length;
           var centerRow = JSON.parse(JSON.stringify(arrCenterRows[i]?arrCenterRows[i]:[]));
           var centerRowLength = centerRow.length;
           var rightRow = JSON.parse(JSON.stringify(arrRightRows[i]?arrRightRows[i]:[]));
           var rightRowLength = rightRow.length;
-          var oRow = leftRow.concat(centerRow.slice(1, centerRowLength), rightRow.slice(1, rightRowLength));
+          var oRow = centerRow.concat(leftRow.slice(1, leftRowLength), rightRow.slice(1, rightRowLength));
           arrTargetRows.push(oRow);
         }
         return arrTargetRows;
@@ -1171,6 +1175,10 @@ multiDropdown：下拉框多选，支持度不好，待优化
       },
       onTitleCheckOrUncheck: function (isChecked) {
         this.$emit("onTitleCheckOrUncheck", isChecked);
+      },
+      onContextClickRow: function (e, oRow) {
+        var oTargetRow = this._getRowByPartRow(oRow);
+        this.$emit("onContextClickRow", e, oTargetRow);
       },
       onClickRow: function (oRow) {
         var oTargetRow = this._getRowByPartRow(oRow);

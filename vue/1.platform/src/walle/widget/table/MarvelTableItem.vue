@@ -96,7 +96,7 @@ multiDropdown：下拉框多选，支持度不好，待优化
         <tbody :class="innerParentTitles.length>0?'reduceH4doubleHead':''">
         <template v-for="(row,index) in rowsInPage">
           <tr :class="[getTrStyle(row, index),row[0].value == hoverRowId ? 'rowHover':'',hasCombineRows?'hasCombineRows':'',minRowH?'minRowH':'']"
-              @click.stop="onClickRow(row)" @dblclick.stop="callback4OnDblclickRow(row)" @mouseenter="onRowHover(row)" @mouseleave="onRowHoverEnd">
+              @click.stop="onClickRow(row)" @contextmenu.prevent="callback4OnContextClickRow($event, row)" @dblclick.stop="callback4OnDblclickRow(row)" @mouseenter="onRowHover(row)" @mouseleave="onRowHoverEnd">
             <td v-if="useDetailRow()" style="width: 35px" :class="foldOrUnFold(row)"
                 @click.stop="onClickFoldOrUnFold(row)"></td>
             <template v-for="title in innerTitles" v-if="title.visible && !isHide4Combine(title, row)">
@@ -271,7 +271,7 @@ multiDropdown：下拉框多选，支持度不好，待优化
                   </select>
                 </template>
                 <template v-else>
-                  <div class="textCell" :title="getCellValueByKey(title.key, row)"
+                  <div class="textCell"
                        :style="getLabelStyle(title, row)"
                        @click="onClickTextCell(title.key, row)">
                     <span class="textCellItem" v-html="getCellValueByKey(title.key, row)"></span>
@@ -1125,6 +1125,9 @@ multiDropdown：下拉框多选，支持度不好，待优化
       },
       callback4OnClickFoldOrUnFold: function (oRow, bIsFold) {
         this.$emit("onClickFoldOrUnFold", oRow, bIsFold);
+      },
+      callback4OnContextClickRow: function (e, oRow) {
+        this.$emit("onContextClickRow", e, oRow);
       },
       callback4OnClickRow: function (oRow) {
         this.$emit("onClickRow", oRow);
