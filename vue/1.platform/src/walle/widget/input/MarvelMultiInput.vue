@@ -6,6 +6,7 @@
               :disabled="bDisabled"
               v-model="inputMsg"
               @blur="onBlur"
+              @change="onChange"
               @input="onInput"></textarea>
   </div>
 </template>
@@ -78,6 +79,9 @@
       onBlur: function () {
         this.callback4OnBlur(this.inputMsg);
       },
+      onChange: function () {
+        this.callback4OnChange(this.inputMsg);
+      },
 
       //#endregion
       //#region callback
@@ -87,6 +91,9 @@
       },
       callback4OnInput: function (strInput) {
         this.$emit("onInput", strInput);
+      },
+      callback4OnChange: function (strInput) {
+        this.$emit("onChange", strInput);
       },
 
       //#endregion

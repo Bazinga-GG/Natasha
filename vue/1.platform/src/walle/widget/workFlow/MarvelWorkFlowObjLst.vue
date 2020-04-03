@@ -416,6 +416,10 @@
       //#endregion
       //#region 3rd
 
+      setCurPage: function (iPage) {
+        this.$refs['objLstGrid' + this.componentId].setCurPage(iPage);
+      },
+
       resetListFoot: function () {
         this.$refs['objLstGrid' + this.componentId].resetFoot();
       }

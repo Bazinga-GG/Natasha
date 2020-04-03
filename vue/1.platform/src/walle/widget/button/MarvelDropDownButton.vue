@@ -16,7 +16,7 @@
            v-bind:style="{'max-height': maxHeight}">
         <div class="optionItem"
              v-for="item in items"
-             v-bind:class="[{'mouseDown': item.label == selectItem.label}, optionItemClass(item)]"
+             v-bind:class="[{'mouseDown': item.label == selectItem.label}, optionItemClass(item), {'hasLineThrough': item.hasLineThrough}]"
              :key="item.label"
              v-on:click.stop="selectClick(item)"
              :title="item.title ? item.title : item.label">
@@ -399,6 +399,9 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  .dropdownBtn .options .hasLineThrough .name{
+    text-decoration: line-through;
   }
 
   .disable {

@@ -167,6 +167,9 @@
       "OSN9800_M24": {
         plugin: new $.MarvelDevPanel_2(),
       },
+      "mc_board": {
+        plugin: new $.MarvelDevPanel_10()
+      },
     };
 
     //#endregion
@@ -194,7 +197,12 @@
         $("#" + this.m_oOptions.id).load(oOption.url, function (oData) {
           $("#" + self.m_oOptions.id).empty();
           self.m_oDraw = SVG().addTo("#" + self.m_oOptions.id);
-          self.m_oDraw.svg(oData);
+          if(self.isIE11()){
+            self._drawSvg4IE11(oData);
+          }else{
+            self.m_oDraw.svg(oData);
+          }
+
           var oSvg = SVG('svg svg');
           var oOriginViewBox = oSvg.node.attributes.viewBox.nodeValue;
           var oOriginX = oSvg.node.attributes.x.nodeValue;
@@ -225,6 +233,28 @@
       else {
         return undefined;
       }
+    };
+
+    this.isIE11 = function () {
+      var strUserAgent = navigator.userAgent;
+      var isIE11 = strUserAgent.indexOf('Trident') > -1 && strUserAgent.indexOf("rv:11.0") > -1;
+
+      return isIE11;
+    };
+
+    this._drawSvg4IE11 = function (svgOrFn) {
+      var well, len, fragment;
+
+      well = document.createElement('svg');
+      fragment = document.createDocumentFragment(); // Dump raw svg
+
+      well.innerHTML = svgOrFn; // Transplant nodes into the fragment
+
+      for (len = well.children.length; len--;) {
+        fragment.appendChild(well.firstElementChild);
+      }
+
+      return this.m_oDraw.add(fragment);
     };
 
     //endregion

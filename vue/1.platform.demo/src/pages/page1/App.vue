@@ -252,6 +252,7 @@
             //#region extPanel
             {id: "/page4MarvelFlexiblePanel", label: "page4MarvelFlexiblePanel"},
             {id: "/page4MarvelFloatPanel", label: "page4MarvelFloatPanel"},
+            {id: "/page4MarvelTablePanel", label: "page4MarvelTablePanel"},
             //endregion
           ]
         }, {

@@ -93,6 +93,12 @@
       //#endregion
       //#region 3rd
 
+      setFileName: function (name) {
+        this.fileName = name;
+      },
+      getFileName: function () {
+        return this.fileName;
+      },
       getFile: function () {
         return this.file;
       },

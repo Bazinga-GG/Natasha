@@ -106,7 +106,7 @@ multiDropdown：下拉框多选，支持度不好，待优化
                 <div class="checkBoxWrapper">
                   <div class="checkBox" @click.stop>
                     <input type="checkbox" :id="_generateIdentityId(row, 'check')"
-                           :disabled="formBoxDisabled(row)"
+                           :disabled="formBoxDisabled(row) || checkBoxDisabled(row)"
                            :checked="rowCheckboxChecked(row)"
                            @change="onRowCheckboxChange(row, $event)">
                     <label :for="_generateIdentityId(row, 'check')"></label>
@@ -648,7 +648,8 @@ multiDropdown：下拉框多选，支持度不好，待优化
             let strId = this.getCellValueByKey("id", oRow);
             let index = this.selectRowIds.indexOf(strId);
             let indexEx = this.disabledIds.indexOf(strId);
-            if (index == -1 && indexEx == -1) {
+            var bIsDisableCheck = this._getCell("checkBox", oRow).disabledCheck;
+            if (index == -1 && indexEx == -1 && bIsDisableCheck!= true) {
               this.selectRowIds.push(strId);
             }
           });
@@ -657,7 +658,8 @@ multiDropdown：下拉框多选，支持度不好，待优化
             let strId = this.getCellValueByKey("id", oRow);
             let index = this.selectRowIds.indexOf(strId);
             let indexEx = this.disabledIds.indexOf(strId);
-            if (index > -1 && indexEx == -1) {
+            var bIsDisableCheck = this._getCell("checkBox", oRow).disabledCheck;
+            if (index > -1 && indexEx == -1 && bIsDisableCheck!= true) {
               this.selectRowIds.splice(index, 1);
             }
           });
@@ -667,7 +669,8 @@ multiDropdown：下拉框多选，支持度不好，待优化
           let oCell = this._getCell("checkBox", oRow);
           let strId = this.getCellValueByKey("id", oRow);
           let indexEx = this.disabledIds.indexOf(strId);
-          if (indexEx == -1) {
+          var bIsDisableCheck = oCell.disabledCheck;
+          if (indexEx == -1 && bIsDisableCheck!= true) {
             oCell.checked = isChecked;
           }
         });
@@ -783,6 +786,9 @@ multiDropdown：下拉框多选，支持度不好，待优化
             }
             if (arrValues[i].selected) {
               oItem.active = true;
+            }
+            if (arrValues[i].hasLineThrough) {
+              oItem.hasLineThrough = true;
             }
             arrItems.push(oItem);
           }
@@ -967,6 +973,14 @@ multiDropdown：下拉框多选，支持度不好，待优化
         let strId = this.getCellValueByKey("id", oRow);
         let index = this.disabledIds.indexOf(strId);
         return index > -1 ? true : false;
+      },
+      checkBoxDisabled(oRow) {
+        var oCheck = this._getCell("checkBox", oRow);
+        if(oCheck.disabledCheck){
+          return true
+        }else{
+          return false;
+        }
       },
       getRowById(strRowId) {
         let arrRes = this.rows.filter((oRow) => {

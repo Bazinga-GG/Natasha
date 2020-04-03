@@ -66,6 +66,7 @@ import Page4MarvelWizardAdvance from '../components/demo4widgets/4.navigator/Pag
 import Page4MarvelWizardTab from '../components/demo4widgets/4.navigator/Page4MarvelWizardTab'
 
 import Page4MarvelFlexiblePanel from '../components/demo4widgets/5.panel/Page4MarvelFlexiblePanel'
+import Page4MarvelTablePanel from '../components/demo4widgets/5.panel/Page4MarvelTablePanel'
 import Page4MarvelFloatPanel from '../components/demo4widgets/5.panel/Page4MarvelFloatPanel'
 import Page4MarvelBottomExtPanel from '../components/demo4widgets/5.panel/Page4MarvelBottomExtPanel'
 import Page4MarvelConfirmC from '../components/demo4widgets/5.panel/Page4MarvelConfirmC'
@@ -400,6 +401,10 @@ export default new Router({
       path: '/Page4MarvelBottomExtPanel',
       name: 'Page4MarvelBottomExtPanel',
       component:Page4MarvelBottomExtPanel
+    },{
+      path: '/Page4MarvelTablePanel',
+      name: 'Page4MarvelTablePanel',
+      component:Page4MarvelTablePanel
     },{
       path: '/Page4MarvelConfirmC',
       name: 'Page4MarvelConfirmC',

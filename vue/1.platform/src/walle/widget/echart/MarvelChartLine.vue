@@ -99,12 +99,14 @@
             type: 'value',
             splitLine: {show: oData.splitLine},
             boundaryGap: [0, '100%'],
-            min: oData.min,
-            max: oData.max
+            min: oData.minY,
+            max: oData.maxY
           },
           xAxis: {
             splitLine: {show: oData.splitLine},
-            type: oData.xAxisType?oData.xAxisType:'time'
+            type: oData.xAxisType?oData.xAxisType:'time',
+            min: oData.minX,
+            max: oData.maxX
           },
           series: [{
             type: 'line',

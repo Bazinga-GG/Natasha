@@ -26,7 +26,7 @@
     "lodash": "4.17.15",
     "moment": "2.24.0",
     "jquery": "3.4.1",
-    "natasha-vue": "1.1.17"
+    "natasha-vue": "1.1.27"
   },
   "devDependencies": {
     "@kazupon/vue-i18n-loader": "0.4.1",

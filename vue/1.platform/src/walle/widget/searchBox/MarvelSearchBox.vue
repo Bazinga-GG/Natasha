@@ -3,18 +3,26 @@
     <div class="dropdownArea" v-if="dropDownItems.length>0">
       <!-- dropdown_button start-->
       <marvel-drop-down-button ref="ref1" :dropDownItems="dropDownItems" :width="width"
-                               :maxHeight="maxHeight"></marvel-drop-down-button>
+                               :maxHeight="maxHeight" @onOptionSelect="changeSearchMode"></marvel-drop-down-button>
       <!-- dropdown_button end-->
     </div>
     <div class="searchArea">
       <!-- search start-->
-      <div class="searchWrapper">
+      <div class="searchWrapper" v-if="!showSecondDropDown">
         <input type="text" class="searchInput" v-bind:placeholder="placeholder" v-model.trim="inputVal" @keyup.enter="search">
         <div class="searchBtn icon-marvelIcon-19" v-on:click="search"></div>
         <div class="deleBtn icon-marvelIcon-20" v-bind:class="{dpn: inputVal == ''}" @click="clear"></div>
       </div>
       <!-- search end-->
+      <div class="dropdownArea2" v-else>
+        <!--dropdown_button start-->
+        <marvel-drop-down-button :dropDownItems="secondDropDownItems" width="190px"
+                               :maxHeight="maxHeight" @onOptionSelect="selectToSearch"></marvel-drop-down-button>
+        <div class="searchBtn icon-marvelIcon-19" v-on:click="search"></div>
+        <!--dropdown_button end-->
+      </div>
     </div>
+
   </div>
 </template>
 
@@ -34,7 +42,9 @@
     data: function () {
       return {
         dropDownItems: [],
-        inputVal: ''
+        secondDropDownItems: [],
+        inputVal: '',
+        showSecondDropDown: false
       }
     },
     props: {
@@ -84,6 +94,16 @@
         this.dropDownItems = this.selectItems;
       },
 
+      changeSearchMode: function(item){
+        if(item.hasOwnProperty("children")){
+          this.showSecondDropDown = true;
+          this.secondDropDownItems = JSON.parse(JSON.stringify(item.children));
+
+        }else{
+          this.showSecondDropDown = false;
+        }
+      },
+
       //#endregion
 
       search: function () {
@@ -100,6 +120,9 @@
         this.callback4Search(searchKey, this.inputVal, searchKeyObj);
       },
 
+      selectToSearch: function(item){
+        this.inputVal = item.label;
+      },
       //#endregion
       //#region callback
 
@@ -191,6 +214,16 @@
     left: -1px;
   }
 
+  .search_dropDown .dropdownArea2 {
+    display: table-cell;
+    height: 30px;
+    width: 100%;
+    float: left;
+    position: relative;
+    top: -1px;
+    left: -1px;
+  }
+
   .search_dropDown .searchArea {
     display: table-cell;
     height: 30px;
@@ -222,7 +255,7 @@
     text-overflow: ellipsis;
   }
 
-  .searchWrapper .searchBtn {
+  .searchBtn {
     position: absolute;
     height: 30px;
     width: 40px;
@@ -235,7 +268,7 @@
     cursor: pointer;
   }
 
-  .searchWrapper .searchBtn:hover {
+  .searchBtn:hover {
     color: #3399ff !important;
   }
 

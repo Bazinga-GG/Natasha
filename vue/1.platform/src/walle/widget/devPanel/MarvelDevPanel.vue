@@ -22,6 +22,7 @@
   require('natasha-devpanel/js/plugins/MarvelDevPanel_7.js');
   require('natasha-devpanel/js/plugins/MarvelDevPanel_8.js');
   require('natasha-devpanel/js/plugins/MarvelDevPanel_9.js');
+  require('natasha-devpanel/js/plugins/MarvelDevPanel_10.js');
   require('natasha-devpanel/js/MarvelDevPanel.js');
 
   /**

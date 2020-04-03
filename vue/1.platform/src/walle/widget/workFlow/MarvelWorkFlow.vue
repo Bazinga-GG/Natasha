@@ -10,6 +10,7 @@
     <div class="bottomContArea">
       <component v-bind:is="currentStep.uiCompName"
                  :index="currentStep.index"
+                 :currentSubTask="currentSubTask"
                  :taskId="taskId"
                  :subTaskId="subTaskId"
                  :uiWFInstanceId="uiWFInstanceId"></component>
@@ -51,6 +52,13 @@
       uiWFInstanceId:{
         type: [String,Number],
         default:"",
+        required: false,
+      },
+      currentSubTask:{
+        type: [Array,Object],
+        default:function () {
+          return undefined
+        },
         required: false,
       }
     },
@@ -96,7 +104,7 @@
       },
 
       setUserUiComponent: function (userComponent) {
-        // for(var i = 0; i<this.stepItems.length; i){
+        // for(var i = 0; i<this.stepItems.length; i++){
         //   var oItem = this.stepItems[i];
         //   if(oItem.uiCompName == userComponent){
         //     this.currentStep = oItem;
@@ -104,7 +112,7 @@
         //   }
         // }
 
-        //TODO:此处业务侧强行修改未注册到stepItems的componentName,待修改
+        //TODO:此处业务侧强行修改未注册到stepItems的componentName, 待修改
         this.currentStep.uiCompName = userComponent;
       },
 
