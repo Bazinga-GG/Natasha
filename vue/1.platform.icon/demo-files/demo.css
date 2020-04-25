@@ -21,7 +21,7 @@ a {
 a:hover, a:focus {
   box-shadow: 0 1px #e74c3c;
 }
-.bshadow0AA, input {
+.bshadow0, input {
   box-shadow: inset 0 -2px #e7e7e7;
 }
 input:hover {
@@ -44,7 +44,7 @@ input:focus {
   outline: none;
   box-shadow: inset 0 -2px #449fdb;
 }
-.glyphAA {
+.glyph {
   font-size: 16px;
   width: 15em;
   padding-bottom: 1em;
@@ -53,7 +53,7 @@ input:focus {
   float: left;
   overflow: hidden;
 }
-.ligaAA {
+.liga {
   width: 80%;
   width: calc(100% - 2.5em);
 }
@@ -66,7 +66,7 @@ input:focus {
 .bgc1 {
   background: #f1f1f1;
 }
-.fgc1AA {
+.fgc1 {
   color: #999;
 }
 .fgc0 {
@@ -103,16 +103,16 @@ p {
 .ptl {
   padding-top: 1.5em;
 }
-.pbsAA, .pvsAA {
+.pbs, .pvs {
   padding-bottom: .25em;
 }
-.pvsAA, .pts {
+.pvs, .pts {
   padding-top: .25em;
 }
-.unitAA {
+.unit {
   float: left;
 }
-.unitRightAA {
+.unitRight {
   float: right;
 }
 .size1of2 {
@@ -121,11 +121,11 @@ p {
 .size1of1 {
   width: 100%;
 }
-.clearfixAA:before, .clearfixAA:after {
+.clearfix:before, .clearfix:after {
   content: " ";
   display: table;
 }
-.clearfixAA:after {
+.clearfix:after {
   clear: both;
 }
 .hidden-true {
@@ -146,7 +146,7 @@ p {
 .fs0 {
   font-size: 16px;
 }
-.fs1AA {
+.fs1 {
   font-size: 32px;
 }
 .fs2 {
