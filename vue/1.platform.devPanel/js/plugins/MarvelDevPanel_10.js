@@ -14,7 +14,7 @@
     this.init = function (oOptions) {
       //#region setUp
       var items = [];
-      for(var i = 1; i<34; i++){
+      for(var i = 1; i<=oOptions.mc_board.lightNum; i++){
         items.push({
           id: "light"+ i,
           key: i,

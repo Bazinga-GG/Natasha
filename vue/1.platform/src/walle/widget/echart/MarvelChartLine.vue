@@ -82,6 +82,7 @@
         this.chartData = oData;
         var option = {
           backgroundColor:oData.backgroundColor,
+          animation:oData.animation == undefined?true:oData.animation,
           title: {
             text: oData.title
           },
