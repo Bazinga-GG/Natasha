@@ -87,6 +87,7 @@
       //#endregion
 
       onInput: function (event) {
+        this.callback4OnInputImmediately(this.inputMsg);
         this.inputWrap(event);
       },
       onBlur: function () {
@@ -103,6 +104,9 @@
 
       callback4OnBlur: function (strInput, strLastInput) {
         this.$emit("onBlur", strInput, strLastInput);
+      },
+      callback4OnInputImmediately: function (strInput) {
+        this.$emit("onInputImmediately", strInput);
       },
       callback4OnInput: function (strInput) {
         this.$emit("onInput", strInput);
